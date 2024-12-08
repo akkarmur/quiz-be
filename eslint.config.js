@@ -47,6 +47,8 @@ export default defineConfig({
   ignores: [
     'node_modules', // Ignore node_modules
     'dist', // Ignore dist directory
-    'build', // Ignore build directory
+    'build/**/*', // Ignore all files in build directory
+    'eslint.config.js', // Ignore ESLint configuration
+    'lint-staged.config.js', // Ignore lint-staged configuration
   ],
 })
