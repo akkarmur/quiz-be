@@ -1,0 +1,20 @@
+type: object
+properties:
+  device_id:
+    type: string
+    example: 'ROG123'
+  device_token:
+    type: string
+    example: '*************'
+  latitude:
+    type: integer
+    example: 23.65
+  longitude:
+    type: integer
+    example: 78.65 
+  os:
+    type: string
+    example: 'android'
+required:
+  - device_id
+  - os

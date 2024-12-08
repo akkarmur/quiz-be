@@ -1,0 +1,10 @@
+schema:
+  type: string
+  enum:
+    - 'true'
+    - 'false'
+in: query
+name: active
+example: true
+description: 'you can pass active as either true or false'
+required: true

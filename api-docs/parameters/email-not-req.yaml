@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: email
+example: 'dummy@dummy.com'
+description: 'email'
+required: false

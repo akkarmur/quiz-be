@@ -1,0 +1,33 @@
+type: object
+properties:
+  email:
+    type: string
+    example: 'email.domain.com'
+    minLength: 6
+    maxLength: 20
+  name:
+    type: string
+    example: 'Test'
+  password:
+    type: string
+    example: 'password'
+    minLength: 6
+  otp:
+    type: string
+    example: '123456'
+  device_id:
+    type: string
+    example: 'ROG123'
+  device_token:
+    type: string
+    example: '*************'
+  os:
+    type: string
+    example: 'android'
+required:
+  - email
+  - name
+  - password
+  - otp
+  - device_id
+  - os

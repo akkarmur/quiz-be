@@ -1,0 +1,39 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+post:
+  summary: login
+  tags:
+    - Auth
+  operationId: login-using-email-number-password
+  description: login
+  responses:
+    '200':
+        description: Login Successful
+        content:
+          application/json:
+            schema:
+              $ref: '../_schemas.yaml#/loginSuccess200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Invalid Credentials
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/invalidCredentials401'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/loginPostReq'
+    required: true

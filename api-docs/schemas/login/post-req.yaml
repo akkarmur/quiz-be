@@ -1,0 +1,22 @@
+type: object
+properties:
+  email:
+    type: string
+    example: 'email.domain.com'
+  password:
+    type: string
+    example: '*******'
+  device_id:
+    type: string
+    example: '*******'
+  device_token:
+    type: string
+    example: '*************'
+  os:
+    type: string
+    example: 'android'
+required:
+  - email
+  - password
+  - device_id
+  - os

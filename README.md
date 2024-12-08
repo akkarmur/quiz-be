@@ -1,1 +1,1 @@
-# quiz-be
+# rent-test

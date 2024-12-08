@@ -1,0 +1,7 @@
+type: object
+properties:
+  device_id:
+    type: string
+    example: '*******'
+required:
+  - device_id

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  quiz_db:
+    image: mysql:8
+    env_file:
+      - mysql.dev.env
+    ports:
+      - 3306:3306
+  quiz_server:
+    build:
+      context: ..
+      dockerfile: docker/express/DockerfileDev
+    depends_on:
+      - quiz_db
+    env_file:
+      - express.dev.env
+    entrypoint: yarn start:dev
+    ports:
+      - 5001:5001
+    volumes:
+      - ..:/home/node/app
+      - /home/node/app/node_modules

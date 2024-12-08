@@ -1,0 +1,9 @@
+type: object
+properties:
+  name:
+    type: string
+    example: 'Shares John' 
+  image:
+    type: file
+required:
+- name

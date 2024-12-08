@@ -1,0 +1,33 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+post:
+  summary: send-otp register
+  tags: 
+   - Auth
+  operationId: post-otp
+  description: send-otp register
+  responses:
+    '201':
+        description: OTP Sent Successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../_schemas.yaml#/sendOtpSuccess200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/sentOtpPostReq'
+    required: true

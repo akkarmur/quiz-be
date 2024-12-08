@@ -1,0 +1,6 @@
+schema:
+  type: integer
+in: query
+name: id
+example: 1
+description: 'you can pass id as integer'

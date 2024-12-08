@@ -1,0 +1,133 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+get:
+  summary: user-details
+  tags:
+    - User
+  operationId: get-user-details
+  description: get user details
+  responses:
+    '200':
+      description: Either single user or list of users
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/getUserSuccess200'
+          examples:
+            admin_get_all:
+              value:
+                message: Details Retrieved Successfully
+                data:
+                  totalCount: 2
+                  data:
+                    - id: 1
+                      name: tester
+                      email: email.domain.com
+                      profile_image: text
+                      role: admin
+                      is_active: 1
+                      created_at: 2023-12-09T17:12:15.000Z
+                      created_by: 1
+                      updated_at: 2023-12-09T17:12:15.000Z
+                      updated_by: 1
+                    - id: 4
+                      name: test
+                      email: email.domain.com
+                      profile_image: text
+                      role: user
+                      is_active: 1
+                      created_at: 2023-12-09T17:12:15.000Z
+                      created_by: 4
+                      updated_at: 2023-12-09T17:12:15.000Z
+                      updated_by: 4
+            login_details:
+              value:
+                message: Details Retrieved Successfully
+                data:
+                  totalCount: 1
+                  data:
+                    - id: 4
+                      name: test
+                      email: email.domain.com
+                      role: user
+                      created_at: 2023-12-09T17:12:15.000Z
+                      created_by: 1
+                      updated_at: 2023-12-09T17:12:15.000Z
+                      updated_by: 1
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  parameters:
+    - $ref: ../_parameter.yaml#/field
+    - $ref: ../_parameter.yaml#/order
+    - $ref: ../_parameter.yaml#/limit
+    - $ref: ../_parameter.yaml#/offset
+    - $ref: ../_parameter.yaml#/getAllNotReq
+  security:
+    - tokenAuth: []
+
+patch:
+  summary: edit User
+  tags:
+    - User
+  operationId: patch-user
+  description: User edit
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/userPatch200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          $ref: '../_schemas.yaml#/userPatchReq'
+  security:
+    - tokenAuth: []

@@ -1,0 +1,10 @@
+schema:
+  type: string
+  enum:
+    - hi
+    - en
+    - gu
+in: header
+name: accept-language
+description: To support API localization
+required: false

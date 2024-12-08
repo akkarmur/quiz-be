@@ -1,0 +1,6 @@
+schema:
+  type: string
+in: query
+name: name
+example: 'Bikes'
+description: 'you can parse any field like <fieldValue> | like OR <fieldValue> | equals'

@@ -1,0 +1,11 @@
+type: object
+properties:
+  email:
+    type: string
+    example: 'email.domain.com'
+  device_id:
+    type: string
+    example: 'ROG123'
+required:
+  - email
+  - device_id

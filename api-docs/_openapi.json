@@ -1,0 +1,1442 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Quiz System API",
+    "description": "Quiz System API Description",
+    "contact": {
+      "name": "Rent"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/v1/auth/send-otp": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "post": {
+        "summary": "send-otp register",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "post-otp",
+        "description": "send-otp register",
+        "responses": {
+          "201": {
+            "description": "OTP Sent Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sendOtpSuccess200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sentOtpPostReq"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/v1/auth/registration": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "post": {
+        "summary": "registration",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "post-registration",
+        "description": "registration",
+        "responses": {
+          "201": {
+            "description": "Successfully Registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registrationSuccess201"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Otp not valid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthorized401"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registrationPostReq"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/v1/auth/forgot-password": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "patch": {
+        "summary": "forgot-password",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "forgot-password",
+        "description": "forgot password",
+        "responses": {
+          "200": {
+            "description": "Password Changed Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pwdResetSuccess200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Otp not valid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/forgotPasswordUpdateReq"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "post": {
+        "summary": "login",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "login-using-email-number-password",
+        "description": "login",
+        "responses": {
+          "200": {
+            "description": "Login Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginSuccess200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidCredentials401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginPostReq"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/v1/auth/guest-user": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "put": {
+        "summary": "registration of guest user",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "put-registration-get-user",
+        "description": "registration of guest user",
+        "responses": {
+          "201": {
+            "description": "Successfully Registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common201"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/guestUserRegistrationPostReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/auth/logout": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "post": {
+        "summary": "logout",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "user-logout",
+        "description": "logout the user",
+        "responses": {
+          "200": {
+            "description": "Log out successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/logoutSuccess200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/logoutPostReq"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/auth/refresh-token": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "post": {
+        "summary": "refresh-token",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "refresh-token",
+        "description": "Refreshing refresh and access token",
+        "responses": {
+          "200": {
+            "description": "Tokens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/refreshGenerated200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthorized401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/refreshTokenReq"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/user": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "get": {
+        "summary": "user-details",
+        "tags": [
+          "User"
+        ],
+        "operationId": "get-user-details",
+        "description": "get user details",
+        "responses": {
+          "200": {
+            "description": "Either single user or list of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getUserSuccess200"
+                },
+                "examples": {
+                  "admin_get_all": {
+                    "value": {
+                      "message": "Details Retrieved Successfully",
+                      "data": {
+                        "totalCount": 2,
+                        "data": [
+                          {
+                            "id": 1,
+                            "name": "tester",
+                            "email": "email.domain.com",
+                            "profile_image": "text",
+                            "role": "admin",
+                            "is_active": 1,
+                            "created_at": "2023-12-09T17:12:15.000Z",
+                            "created_by": 1,
+                            "updated_at": "2023-12-09T17:12:15.000Z",
+                            "updated_by": 1
+                          },
+                          {
+                            "id": 4,
+                            "name": "test",
+                            "email": "email.domain.com",
+                            "profile_image": "text",
+                            "role": "user",
+                            "is_active": 1,
+                            "created_at": "2023-12-09T17:12:15.000Z",
+                            "created_by": 4,
+                            "updated_at": "2023-12-09T17:12:15.000Z",
+                            "updated_by": 4
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "login_details": {
+                    "value": {
+                      "message": "Details Retrieved Successfully",
+                      "data": {
+                        "totalCount": 1,
+                        "data": [
+                          {
+                            "id": 4,
+                            "name": "test",
+                            "email": "email.domain.com",
+                            "role": "user",
+                            "created_at": "2023-12-09T17:12:15.000Z",
+                            "created_by": 1,
+                            "updated_at": "2023-12-09T17:12:15.000Z",
+                            "updated_by": 1
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/field"
+          },
+          {
+            "$ref": "#/components/parameters/order"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/getAllNotReq"
+          }
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "summary": "edit User",
+        "tags": [
+          "User"
+        ],
+        "operationId": "patch-user",
+        "description": "User edit",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userPatch200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/userPatchReq"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "auth-apis"
+    },
+    {
+      "name": "User",
+      "description": "user-apis"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "tokenAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Authorization token that a client provides when making API calls. (e.g. Authorization: Bearer <Token>)"
+      }
+    },
+    "schemas": {
+      "pwdResetSuccess200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Password Reset Successfully"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "loginSuccess200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Log In Successful"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string",
+                "example": "token......"
+              },
+              "refresh_token": {
+                "type": "string",
+                "example": "token......"
+              }
+            },
+            "required": [
+              "refresh_token",
+              "access_token"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "logoutSuccess200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Log Out Successful"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "registrationSuccess201": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Registered Successfully"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string",
+                "example": "token......"
+              },
+              "refresh_token": {
+                "type": "string",
+                "example": "token......"
+              }
+            },
+            "required": [
+              "refresh_token",
+              "access_token"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "sendOtpSuccess200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "OTP Sent Successfully"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "getUserSuccess200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Details Retrieved Successfully"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "example": 1
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "profile_image": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "user",
+                        "admin",
+                        "super_admin"
+                      ]
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_by": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "profile_image",
+                    "role",
+                    "created_at",
+                    "updated_at"
+                  ]
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "email",
+                  "profile_image",
+                  "role",
+                  "is_active",
+                  "created_at",
+                  "created_by",
+                  "updated_at",
+                  "updated_by"
+                ]
+              }
+            },
+            "required": [
+              "totalCount",
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "userPatchReq": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Shares John"
+          },
+          "image": {
+            "type": "file"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "userPatch200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Data updated successfully"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "refreshGenerated200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "OK"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "access_token": {
+                "type": "string",
+                "example": "token......"
+              },
+              "refresh_token": {
+                "type": "string",
+                "example": "token......"
+              }
+            },
+            "required": [
+              "refresh_token",
+              "access_token"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "common201": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Created"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "common400": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Not valid"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "common401": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Unauthorized"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "unauthorized401": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Otp not valid."
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "invalidCredentials401": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Invalid Credentials"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "common404": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Data not found"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "common409": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Data already exist"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "common500": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Internal server error"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "sentOtpPostReq": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "email.domain.com"
+          },
+          "device_id": {
+            "type": "string",
+            "example": "ROG123"
+          }
+        },
+        "required": [
+          "email",
+          "device_id"
+        ]
+      },
+      "registrationPostReq": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "email.domain.com",
+            "minLength": 6,
+            "maxLength": 20
+          },
+          "name": {
+            "type": "string",
+            "example": "Test"
+          },
+          "password": {
+            "type": "string",
+            "example": "password",
+            "minLength": 6
+          },
+          "otp": {
+            "type": "string",
+            "example": "123456"
+          },
+          "device_id": {
+            "type": "string",
+            "example": "ROG123"
+          },
+          "device_token": {
+            "type": "string",
+            "example": "*************"
+          },
+          "os": {
+            "type": "string",
+            "example": "android"
+          }
+        },
+        "required": [
+          "email",
+          "name",
+          "password",
+          "otp",
+          "device_id",
+          "os"
+        ]
+      },
+      "guestUserRegistrationPostReq": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "example": "ROG123"
+          },
+          "device_token": {
+            "type": "string",
+            "example": "*************"
+          },
+          "latitude": {
+            "type": "integer",
+            "example": 23.65
+          },
+          "longitude": {
+            "type": "integer",
+            "example": 78.65
+          },
+          "os": {
+            "type": "string",
+            "example": "android"
+          }
+        },
+        "required": [
+          "device_id",
+          "os"
+        ]
+      },
+      "forgotPasswordUpdateReq": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "email.domain.com",
+            "minLength": 6,
+            "maxLength": 20
+          },
+          "password": {
+            "type": "string",
+            "example": "password",
+            "minLength": 6
+          },
+          "otp": {
+            "type": "string",
+            "example": "123456"
+          },
+          "device_id": {
+            "type": "string",
+            "example": "ROG123"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "otp",
+          "device_id"
+        ]
+      },
+      "loginPostReq": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "email.domain.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "*******"
+          },
+          "device_id": {
+            "type": "string",
+            "example": "*******"
+          },
+          "device_token": {
+            "type": "string",
+            "example": "*************"
+          },
+          "os": {
+            "type": "string",
+            "example": "android"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "device_id",
+          "os"
+        ]
+      },
+      "logoutPostReq": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "example": "*******"
+          }
+        },
+        "required": [
+          "device_id"
+        ]
+      },
+      "refreshTokenReq": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "example": "*******"
+          }
+        },
+        "required": [
+          "device_id"
+        ]
+      }
+    },
+    "parameters": {
+      "acceptLanguage": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "hi",
+            "en",
+            "gu"
+          ]
+        },
+        "in": "header",
+        "name": "accept-language",
+        "description": "To support API localization",
+        "required": false
+      },
+      "idReq": {
+        "schema": {
+          "type": "integer"
+        },
+        "in": "query",
+        "name": "id",
+        "example": 1,
+        "description": "you can pass id as integer",
+        "required": true
+      },
+      "idNotReq": {
+        "schema": {
+          "type": "integer"
+        },
+        "in": "query",
+        "name": "id",
+        "example": 1,
+        "description": "you can pass id as integer"
+      },
+      "emailReq": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "email",
+        "example": "dummy@dummy.com",
+        "description": "email",
+        "required": true
+      },
+      "emailNotReq": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "email",
+        "example": "dummy@dummy.com",
+        "description": "email",
+        "required": false
+      },
+      "field": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "email",
+        "example": "test@test.com | like",
+        "description": "you can parse any field like <fieldValue> | like OR <fieldValue> | equals"
+      },
+      "fieldId": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "id",
+        "example": "1 | like",
+        "description": "you can parse any field like <fieldValue> | like OR <fieldValue> | equals"
+      },
+      "fieldName": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "name",
+        "example": "Bikes",
+        "description": "you can parse any field like <fieldValue> | like OR <fieldValue> | equals"
+      },
+      "fieldPid": {
+        "schema": {
+          "type": "integer"
+        },
+        "in": "query",
+        "name": "parent_id",
+        "example": 0,
+        "description": "you can pass parent id as number"
+      },
+      "fieldPidReq": {
+        "schema": {
+          "type": "integer"
+        },
+        "in": "query",
+        "name": "parent_id",
+        "example": 0,
+        "description": "you can pass parent id as number",
+        "required": true
+      },
+      "limit": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "limit",
+        "example": "10",
+        "description": "how many record you want in one page"
+      },
+      "offset": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "offset",
+        "example": "1",
+        "description": "page number"
+      },
+      "order": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "order",
+        "example": "email | asc",
+        "description": "you can parse ordering like <fieldName> | asc OR <fieldName> | desc"
+      },
+      "archive": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "true"
+          ]
+        },
+        "in": "query",
+        "name": "archive",
+        "example": true,
+        "description": "you can pass archive as true to delete forever"
+      },
+      "activeReq": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "in": "query",
+        "name": "active",
+        "example": true,
+        "description": "you can pass active as either true or false",
+        "required": true
+      },
+      "activeNotReq": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "in": "query",
+        "name": "active",
+        "example": true,
+        "description": "you can pass active as either true or false"
+      },
+      "getAllNotReq": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "in": "query",
+        "name": "get_all",
+        "example": true,
+        "description": "you can pass active as either true or false"
+      }
+    }
+  }
+}

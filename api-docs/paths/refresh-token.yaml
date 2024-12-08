@@ -1,0 +1,40 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+post:
+  summary: refresh-token
+  tags:
+    - Auth
+  operationId: refresh-token
+  description: Refreshing refresh and access token
+  responses:
+    '200':
+        description: Tokens
+        content:
+          application/json:
+            schema:
+              $ref: '../_schemas.yaml#/refreshGenerated200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/unauthorized401'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/refreshTokenReq'
+  security:
+    - tokenAuth: []

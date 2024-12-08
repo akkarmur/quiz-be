@@ -1,0 +1,46 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+post:
+  summary: registration
+  tags: 
+   - Auth
+  operationId: post-registration
+  description: registration
+  responses:
+    '201':
+        description: Successfully Registered
+        content:
+          application/json:
+            schema:
+              $ref: '../_schemas.yaml#/registrationSuccess201'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Otp not valid
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/unauthorized401'
+    '409':
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common409'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/registrationPostReq'
+    required: true
+

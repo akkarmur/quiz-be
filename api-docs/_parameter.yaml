@@ -1,0 +1,50 @@
+acceptLanguage:
+  $ref: ./parameters/accept-language.yaml
+
+idReq:
+  $ref: './parameters/id-req.yaml'
+
+idNotReq:
+  $ref: ./parameters/id-not-req.yaml
+
+emailReq:
+  $ref: ./parameters/email-req.yaml
+
+emailNotReq:
+  $ref: ./parameters/email-not-req.yaml
+
+field:
+  $ref: ./parameters/pagination/field.yaml
+
+fieldId:
+  $ref: ./parameters/pagination/field-id.yaml
+
+fieldName:
+  $ref: ./parameters/pagination/field-name.yaml
+
+fieldPid:
+  $ref: ./parameters/pagination/field-pid.yaml
+
+fieldPidReq:
+  $ref: ./parameters/pagination/field-pid-req.yaml
+
+limit:
+  $ref: ./parameters/pagination/limit.yaml
+
+offset:
+  $ref: ./parameters/pagination/offset.yaml
+
+order:
+  $ref: ./parameters/pagination/order.yaml
+
+archive:
+  $ref: './parameters/archive.yaml'
+
+activeReq:
+  $ref: './parameters/active-req.yaml'
+
+activeNotReq:
+  $ref: './parameters/active-not-req.yaml'
+
+getAllNotReq:
+  $ref: ./parameters/get-all-not-req.yaml

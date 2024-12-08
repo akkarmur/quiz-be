@@ -1,0 +1,6 @@
+schema:
+  type: string
+in: query
+name: order
+example: 'email | asc'
+description: 'you can parse ordering like <fieldName> | asc OR <fieldName> | desc'

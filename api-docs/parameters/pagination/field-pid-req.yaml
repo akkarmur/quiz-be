@@ -1,0 +1,7 @@
+schema:
+  type: integer
+in: query
+name: parent_id
+example: 0
+description: 'you can pass parent id as number'
+required: true

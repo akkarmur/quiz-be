@@ -1,0 +1,6 @@
+schema:
+  type: string
+in: query
+name: limit
+example: '10'
+description: 'how many record you want in one page'
