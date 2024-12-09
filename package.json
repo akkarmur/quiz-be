@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Ajeet Karmur",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node build/index.js",
