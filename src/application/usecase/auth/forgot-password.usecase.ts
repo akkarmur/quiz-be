@@ -49,11 +49,7 @@ export const forgotPasswordUseCase = async (
     const currentTime = moment()
     const timeDifference = currentTime.diff(otpCreatedTime, 'minutes')
     if (timeDifference > CONSTANTS.DEFAULT_VALUES.OTP_DURATION) {
-      return E.left(
-        formatError(StatusCodes.UNAUTHORIZED, 'OTP has expired', {
-          field: 'otp',
-        }),
-      )
+      return E.left(formatError(StatusCodes.UNAUTHORIZED, 'OTP_EXPIRED'))
     }
 
     /**
@@ -81,18 +77,10 @@ export const forgotPasswordUseCase = async (
      */
     const affectedRows = await userRepo.changePassword(inputData, t)
     if (!affectedRows) {
-      return E.left(
-        formatError(StatusCodes.NOT_FOUND, 'User not registered', {
-          field: 'email',
-        }),
-      )
+      return E.left(formatError(StatusCodes.NOT_FOUND, 'USER_NOT_REGISTERED'))
     }
     return E.right(undefined)
   } else {
-    return E.left(
-      formatError(StatusCodes.UNAUTHORIZED, 'Invalid OTP', {
-        field: 'otp',
-      }),
-    )
+    return E.left(formatError(StatusCodes.UNAUTHORIZED, 'OTP_INVALID'))
   }
 }

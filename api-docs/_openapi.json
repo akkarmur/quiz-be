@@ -527,7 +527,7 @@
                           {
                             "id": 1,
                             "name": "tester",
-                            "email": "email.domain.com",
+                            "email": "email@domain.com",
                             "profile_image": "text",
                             "role": "admin",
                             "is_active": 1,
@@ -539,7 +539,7 @@
                           {
                             "id": 4,
                             "name": "test",
-                            "email": "email.domain.com",
+                            "email": "email@domain.com",
                             "profile_image": "text",
                             "role": "user",
                             "is_active": 1,
@@ -561,7 +561,7 @@
                           {
                             "id": 4,
                             "name": "test",
-                            "email": "email.domain.com",
+                            "email": "email@domain.com",
                             "role": "user",
                             "created_at": "2023-12-09T17:12:15.000Z",
                             "created_by": 1,
@@ -1087,7 +1087,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "example": "email.domain.com"
+            "example": "email@domain.com"
           },
           "device_id": {
             "type": "string",
@@ -1104,7 +1104,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "example": "email.domain.com",
+            "example": "email@domain.com",
             "minLength": 6,
             "maxLength": 20
           },
@@ -1177,7 +1177,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "example": "email.domain.com",
+            "example": "email@domain.com",
             "minLength": 6,
             "maxLength": 20
           },
@@ -1207,7 +1207,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "example": "email.domain.com"
+            "example": "email@domain.com"
           },
           "password": {
             "type": "string",

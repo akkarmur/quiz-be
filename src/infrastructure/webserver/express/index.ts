@@ -2,6 +2,7 @@ import cors from 'cors'
 import express from 'express'
 import { ConfigurationOptions, I18n } from 'i18n'
 
+import { path } from '../../../apis'
 import { LoggerStream } from '../../../infrastructure/helpers/logger'
 import EN from '../../configs/language/en'
 import GU from '../../configs/language/gu'
@@ -113,6 +114,15 @@ export const createServer = (): Express.Application => {
       await sequelize.sync()
     }
   }
+
+  /**
+   * Mounts the API routes
+   *
+   * @param {Request} req - Request object
+   * @param {Response} res - Response object
+   * @param {NextFunction} next - Next function
+   */
+  app.use('/v1', path())
 
   /**
    * Starts the Express server on the specified port.

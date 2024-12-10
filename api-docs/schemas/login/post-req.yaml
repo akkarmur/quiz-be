@@ -2,7 +2,7 @@ type: object
 properties:
   email:
     type: string
-    example: 'email.domain.com'
+    example: 'email@domain.com'
   password:
     type: string
     example: '*******'

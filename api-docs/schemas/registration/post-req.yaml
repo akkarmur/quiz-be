@@ -2,7 +2,7 @@ type: object
 properties:
   email:
     type: string
-    example: 'email.domain.com'
+    example: 'email@domain.com'
     minLength: 6
     maxLength: 20
   name:

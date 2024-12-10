@@ -169,6 +169,7 @@ const serverErrors = {
   DUPLICATED_DATA: 'Data duplicated',
   OTP_INVALID: 'Otp not valid.',
   OTP_EXPIRED: 'Otp has expired',
+  USER_NOT_REGISTERED: 'User not registered',
   TOKEN_EXPIRED: 'Token has expired',
   TOKEN_INVALID: 'Invalid Token',
   TOKEN_PREDATED: 'Wrong token',

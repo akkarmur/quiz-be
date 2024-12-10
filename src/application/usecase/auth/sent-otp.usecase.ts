@@ -3,6 +3,7 @@ import { Transaction } from 'sequelize'
 
 import { SentOtpPostReqOtp } from '../../../domain/entities/auth/sent-otp.interface'
 import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
+import { sendOtpMail } from '../../../infrastructure/helpers/mailer/send-otp'
 import { randomNumber } from '../../../infrastructure/helpers/utils/random-number'
 import { AuthRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
 
@@ -48,7 +49,7 @@ export const sentOtpUseCase = async (
    * Although currently commented out, this step would involve sending the OTP to the user's email.
    * This ensures the user receives the OTP for verification purposes.
    */
-  // await sendSMS(input.email, input.otp)
+  await sendOtpMail(input.email, input.otp)
 
   /**
    * Step 5: Return success
