@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { sentOtpUseCase } from '../../../application/usecase/auth/sent-otp.usecase'
+import { sentOtpUseCase } from '../../../application/usecase/auth/send-otp/sent-otp.usecase'
 import { SentOtpPostReqOtp } from '../../../domain/entities/auth/sent-otp.interface'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'

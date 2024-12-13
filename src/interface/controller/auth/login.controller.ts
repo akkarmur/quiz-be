@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { loginUseCase } from '../../../application/usecase/auth/login.usecase'
+import { loginUseCase } from '../../../application/usecase/auth/login/login.usecase'
 import { LoginPostReq } from '../../../domain/entities/auth/login.interface'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'

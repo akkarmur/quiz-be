@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { refreshTokenUseCase } from '../../../application/usecase/auth/refresh-token.usecase'
+import { refreshTokenUseCase } from '../../../application/usecase/auth/refresh-token/refresh-token.usecase'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'
 import { mysqlAuthRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'

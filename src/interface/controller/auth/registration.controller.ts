@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { registrationUseCase } from '../../../application/usecase/auth/registration.usecase'
+import { registrationUseCase } from '../../../application/usecase/auth/registration/registration.usecase'
 import { RegistrationPostReq } from '../../../domain/entities/auth/registration.interface'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'

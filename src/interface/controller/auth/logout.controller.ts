@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { logoutUseCase } from '../../../application/usecase/auth/logout.usecase'
+import { logoutUseCase } from '../../../application/usecase/auth/logout/logout.usecase'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'
 import { mysqlAuthRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'

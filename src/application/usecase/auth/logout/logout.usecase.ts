@@ -4,9 +4,9 @@ import { Transaction } from 'sequelize'
 import {
   FindLoginReq,
   LoginDetails,
-} from '../../../domain/entities/auth/login.interface'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { AuthRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
+} from '../../../../domain/entities/auth/login.interface'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { AuthRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
 
 /**
  * Logout use case

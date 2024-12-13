@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import { env } from '../../infrastructure/env'
-import { verifyJWTHS512Middleware } from '../../infrastructure/helpers/token/jwt-HS256.token'
+import { verifyJWTHS512Middleware } from '../../infrastructure/helpers/token/jwt-HS512.token'
 import { validation } from '../../infrastructure/helpers/validator'
 import { forgotPasswordController } from '../controller/auth/forgot-password.controller'
 import { guestUserController } from '../controller/auth/guest-user.controller'

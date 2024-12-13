@@ -2,7 +2,7 @@ import { Router } from 'express'
 import multer from 'multer'
 
 import { env } from '../../infrastructure/env'
-import { verifyJWTHS512Middleware } from '../../infrastructure/helpers/token/jwt-HS256.token'
+import { verifyJWTHS512Middleware } from '../../infrastructure/helpers/token/jwt-HS512.token'
 import { validation } from '../../infrastructure/helpers/validator'
 import { getUserController } from '../controller/user/get-user.controller'
 import { updateUserController } from '../controller/user/update-user.controller'

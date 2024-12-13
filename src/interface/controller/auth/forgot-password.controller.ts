@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { forgotPasswordUseCase } from '../../../application/usecase/auth/forgot-password.usecase'
+import { forgotPasswordUseCase } from '../../../application/usecase/auth/forgot-password/forgot-password.usecase'
 import { ForgotPasswordPatchReq } from '../../../domain/entities/auth/forgot-password.interface'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'

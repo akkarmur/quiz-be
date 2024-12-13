@@ -7,19 +7,19 @@ import {
   LoginDetails,
   loginRes,
   LoginTokenDetailsFromJSON,
-} from '../../../domain/entities/auth/login.interface'
+} from '../../../../domain/entities/auth/login.interface'
 import {
   convertToPagination,
   Pagination,
-} from '../../../domain/entities/common/pagination'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { CONSTANTS } from '../../../infrastructure/configs/constants/constants'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { env } from '../../../infrastructure/env'
-import { formatError } from '../../../infrastructure/helpers/res'
-import { generateJWTHS512Token } from '../../../infrastructure/helpers/token/jwt-HS256.token'
-import { AuthRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
-import { UserRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
+} from '../../../../domain/entities/common/pagination'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { CONSTANTS } from '../../../../infrastructure/configs/constants/constants'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { env } from '../../../../infrastructure/env'
+import { formatError } from '../../../../infrastructure/helpers/res'
+import { generateJWTHS512Token } from '../../../../infrastructure/helpers/token/jwt-HS512.token'
+import { AuthRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
+import { UserRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
 
 /**
  * Refresh token use case

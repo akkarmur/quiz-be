@@ -2,9 +2,9 @@ import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
 
-import { GuestUserRegistrationPostReq } from '../../../domain/entities/user/guest-user-put.interface'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { AuthRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
+import { GuestUserRegistrationPostReq } from '../../../../domain/entities/user/guest-user-put.interface'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { AuthRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
 
 /**
  * Use case for registering or updating a guest user.

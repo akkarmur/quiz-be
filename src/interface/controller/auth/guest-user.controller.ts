@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { guestUserUseCase } from '../../../application/usecase/auth/guest-user.usecase'
+import { guestUserUseCase } from '../../../application/usecase/auth/guest-user/guest-user.usecase'
 import { GuestUserRegistrationPostReq } from '../../../domain/entities/user/guest-user-put.interface'
 import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../infrastructure/helpers/res'

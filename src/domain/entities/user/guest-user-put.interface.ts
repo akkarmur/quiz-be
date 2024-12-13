@@ -18,18 +18,6 @@ export interface GuestUserRegistrationPostReq {
   device_token?: string
   /**
    *
-   * @type {number}
-   * @memberof ProductDataInput
-   */
-  latitude?: number
-  /**
-   *
-   * @type {number}
-   * @memberof ProductDataInput
-   */
-  longitude?: number
-  /**
-   *
    * @type {string}
    * @memberof GuestUserRegistrationPostReq
    */
@@ -123,8 +111,6 @@ export function GuestUserRegistrationPostReqFromJSONTyped(
   return {
     device_id: json['device_id'],
     device_token: json['device_token'],
-    latitude: json['latitude'],
-    longitude: json['longitude'],
     os: json['os'],
   }
 }

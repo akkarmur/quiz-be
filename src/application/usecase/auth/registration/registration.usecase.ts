@@ -6,21 +6,21 @@ import { Transaction } from 'sequelize'
 import {
   loginRes,
   LoginTokenDetailsFromJSON,
-} from '../../../domain/entities/auth/login.interface'
+} from '../../../../domain/entities/auth/login.interface'
 import {
   RegistrationDbData,
   RegistrationPostReq,
-} from '../../../domain/entities/auth/registration.interface'
-import { convertToPagination } from '../../../domain/entities/common/pagination'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { CONSTANTS } from '../../../infrastructure/configs/constants/constants'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { env } from '../../../infrastructure/env'
-import { convertToMd5 } from '../../../infrastructure/helpers/hash/md5.hash'
-import { formatError } from '../../../infrastructure/helpers/res'
-import { generateJWTHS512Token } from '../../../infrastructure/helpers/token/jwt-HS256.token'
-import { AuthRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
-import { UserRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
+} from '../../../../domain/entities/auth/registration.interface'
+import { convertToPagination } from '../../../../domain/entities/common/pagination'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { CONSTANTS } from '../../../../infrastructure/configs/constants/constants'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { env } from '../../../../infrastructure/env'
+import { convertToMd5 } from '../../../../infrastructure/helpers/hash/md5.hash'
+import { formatError } from '../../../../infrastructure/helpers/res'
+import { generateJWTHS512Token } from '../../../../infrastructure/helpers/token/jwt-HS512.token'
+import { AuthRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
+import { UserRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
 
 /**
  * Registration use case
@@ -45,19 +45,15 @@ export const registrationUseCase = async (
   t: Transaction,
 ): Promise<E.Either<ApplicationError, loginRes>> => {
   // Check if a user with the provided email exists
-  const phoneNumberFilter = convertToPagination({
+  const emailFilter = convertToPagination({
     email: input.email,
   })
 
-  const userByPhoneNumber = await userRepo.get(phoneNumberFilter, t)
+  const userByEmail = await userRepo.get(emailFilter, t)
 
-  if (O.isSome(userByPhoneNumber)) {
+  if (O.isSome(userByEmail)) {
     // If a user with the provided email exists, return a conflict error
-    return E.left(
-      formatError(StatusCodes.CONFLICT, 'ALREADY_EXIST', {
-        field: 'Phone Number',
-      }),
-    )
+    return E.left(formatError(StatusCodes.CONFLICT, 'ALREADY_EXIST'))
   }
 
   // Check if an OTP record exists for the provided input

@@ -1,11 +1,11 @@
 import * as E from 'fp-ts/Either'
 import { Transaction } from 'sequelize'
 
-import { SentOtpPostReqOtp } from '../../../domain/entities/auth/sent-otp.interface'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { sendOtpMail } from '../../../infrastructure/helpers/mailer/send-otp'
-import { randomNumber } from '../../../infrastructure/helpers/utils/random-number'
-import { AuthRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
+import { SentOtpPostReqOtp } from '../../../../domain/entities/auth/sent-otp.interface'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { sendOtpMail } from '../../../../infrastructure/helpers/mailer/send-otp'
+import { randomNumber } from '../../../../infrastructure/helpers/utils/random-number'
+import { AuthRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth-repo.interface'
 
 /**
  * Sent OTP use case
