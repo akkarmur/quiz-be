@@ -2,15 +2,15 @@ import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
 
-import { Pagination } from '../../../domain/entities/common/pagination'
+import { Pagination } from '../../../../domain/entities/common/pagination'
 import {
   UserGetRes,
   UserGetResDataInnerFromJSON,
-} from '../../../domain/entities/user/user-get.interface'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { formatError } from '../../../infrastructure/helpers/res'
-import { UserRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
+} from '../../../../domain/entities/user/user-get.interface'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { formatError } from '../../../../infrastructure/helpers/res'
+import { UserRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
 
 /**
  * getUserUseCase

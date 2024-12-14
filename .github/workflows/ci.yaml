@@ -44,6 +44,6 @@ jobs:
 
       - name: Validate api-docs
         run: yarn api-docs:validate
-        
-      # - name: Run unit tests
-      #   run: yarn test-unit
+
+      - name: Run unit tests
+        run: yarn test --coverage

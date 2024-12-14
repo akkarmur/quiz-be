@@ -61,7 +61,7 @@ export const parseOrder = (order: InputOrder): ParsedOrder[] => {
    */
   if (typeof order === 'string') {
     const [field, direction] = order.split(' | ')
-    return [{ field, direction: (direction as 'asc' | 'desc') || 'asc' }]
+    return [{ field, direction: (direction as 'asc' | 'desc') ?? 'asc' }]
   } else if (Array.isArray(order)) {
     /**
      * If the order by data is an array, map over each item and split it by the '|' character
@@ -70,7 +70,7 @@ export const parseOrder = (order: InputOrder): ParsedOrder[] => {
      */
     return order.map((item) => {
       const [field, direction] = item.split(' | ')
-      return { field, direction: (direction as 'asc' | 'desc') || 'asc' }
+      return { field, direction: (direction as 'asc' | 'desc') ?? 'asc' }
     })
   }
   /**
@@ -133,7 +133,7 @@ export const convertToPagination = (data: any): Pagination => {
         fieldData.push({
           name: fieldName,
           value: d.split(' | ')[0],
-          operation: d.split(' | ')[1] || 'equals',
+          operation: d.split(' | ')[1] ?? 'equals',
         })
       })
     }

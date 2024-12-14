@@ -36,8 +36,7 @@
     "api-docs",
     "docker",
     "scripts",
-    "src/application/domain",
     "src/infrastructure/configs",
-    "src/infrastructure/orm/sequelize/entities"
+    "src/infrastructure/orm/sequelize/"
   ]
 }

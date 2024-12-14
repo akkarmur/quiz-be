@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { getUserUseCase } from '../../../../application/usecase/user/get-user.usecase'
+import { getUserUseCase } from '../../../../application/usecase/user/get-user/get-user.usecase'
 import { USER_ROLES } from '../../../../infrastructure/configs/constants/enums'
 import { handleResult } from '../../../../infrastructure/helpers/res'
 import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
@@ -13,7 +13,7 @@ import {
   mockUserUseCaseResponse,
 } from './get-user.controller.fixture'
 
-jest.mock('../../../../application/usecase/user/get-user.usecase')
+jest.mock('../../../../application/usecase/user/get-user/get-user.usecase')
 jest.mock('../../../../infrastructure/helpers/res')
 jest.mock(
   '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo',

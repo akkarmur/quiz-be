@@ -2,14 +2,14 @@ import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
 
-import { convertToPagination } from '../../../domain/entities/common/pagination'
-import { UserPatchReq } from '../../../domain/entities/user/user-update.interface'
-import { ApplicationError } from '../../../infrastructure/configs/constants/application-tag'
-import { CONSTANTS } from '../../../infrastructure/configs/constants/constants'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { uploadImage } from '../../../infrastructure/helpers/fs'
-import { formatError } from '../../../infrastructure/helpers/res'
-import { UserRepoInterface } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
+import { convertToPagination } from '../../../../domain/entities/common/pagination'
+import { UserPatchReq } from '../../../../domain/entities/user/user-update.interface'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { CONSTANTS } from '../../../../infrastructure/configs/constants/constants'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { uploadImage } from '../../../../infrastructure/helpers/fs'
+import { formatError } from '../../../../infrastructure/helpers/res'
+import { UserRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user-repo.interface'
 
 /**
  * updateUserUseCase

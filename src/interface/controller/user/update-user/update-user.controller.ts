@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { updateUserUseCase } from '../../../../application/usecase/user/update-user.usecase'
+import { updateUserUseCase } from '../../../../application/usecase/user/update-user/update-user.usecase'
 import { UserPatchReq } from '../../../../domain/entities/user/user-update.interface'
 import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../../infrastructure/helpers/res'

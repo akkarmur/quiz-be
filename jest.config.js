@@ -8,4 +8,22 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest', // Use ts-jest to transform TypeScript files
   },
+  coveragePathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/build/',
+    '<rootDir>/api-docs/',
+    '<rootDir>/docker/',
+    '<rootDir>/scripts/',
+    '<rootDir>/src/infrastructure/configs/',
+    '<rootDir>/src/infrastructure/orm/sequelize/',
+    '\\.interface\\.ts$',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 0,
+      functions: 0,
+      lines: 0,
+      statements: 0,
+    },
+  },
 }

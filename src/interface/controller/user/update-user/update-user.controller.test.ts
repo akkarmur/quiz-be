@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { updateUserUseCase } from '../../../../application/usecase/user/update-user.usecase'
+import { updateUserUseCase } from '../../../../application/usecase/user/update-user/update-user.usecase'
 import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../../infrastructure/helpers/res'
 import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
@@ -12,7 +12,9 @@ import {
   mockTransactionFixture,
 } from './update-user.controller.fixture'
 
-jest.mock('../../../../application/usecase/user/update-user.usecase')
+jest.mock(
+  '../../../../application/usecase/user/update-user/update-user.usecase',
+)
 jest.mock(
   '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo',
 )

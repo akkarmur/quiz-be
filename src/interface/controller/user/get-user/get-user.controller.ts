@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { getUserUseCase } from '../../../../application/usecase/user/get-user.usecase'
+import { getUserUseCase } from '../../../../application/usecase/user/get-user/get-user.usecase'
 import {
   Pagination,
   convertToPagination,
