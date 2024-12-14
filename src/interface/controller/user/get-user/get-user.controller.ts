@@ -1,15 +1,14 @@
 import { NextFunction, Request, Response } from 'express'
-
-import { getUserUseCase } from '../../../application/usecase/user/get-user.usecase'
+import { getUserUseCase } from '../../../../application/usecase/user/get-user.usecase'
 import {
-  convertToPagination,
   Pagination,
-} from '../../../domain/entities/common/pagination'
-import { USER_ROLES } from '../../../infrastructure/configs/constants/enums'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { handleResult } from '../../../infrastructure/helpers/res'
-import { mysqlCommonRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
-import { mysqlUserRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
+  convertToPagination,
+} from '../../../../domain/entities/common/pagination'
+import { USER_ROLES } from '../../../../infrastructure/configs/constants/enums'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
+import { mysqlUserRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
 
 /**
  * Controller for handling user retrieval requests.

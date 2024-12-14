@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from 'express'
-
-import { registrationUseCase } from '../../../application/usecase/auth/registration/registration.usecase'
-import { RegistrationPostReq } from '../../../domain/entities/auth/registration.interface'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { handleResult } from '../../../infrastructure/helpers/res'
-import { mysqlAuthRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
-import { mysqlCommonRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
-import { mysqlUserRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
+import { registrationUseCase } from '../../../../application/usecase/auth/registration/registration.usecase'
+import { RegistrationPostReq } from '../../../../domain/entities/auth/registration.interface'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlAuthRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
+import { mysqlUserRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
 
 /**
  * Handles user registration requests.

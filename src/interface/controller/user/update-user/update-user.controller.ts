@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
-
-import { updateUserUseCase } from '../../../application/usecase/user/update-user.usecase'
-import { UserPatchReq } from '../../../domain/entities/user/user-update.interface'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { handleResult } from '../../../infrastructure/helpers/res'
-import { mysqlCommonRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
-import { mysqlUserRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
+import { updateUserUseCase } from '../../../../application/usecase/user/update-user.usecase'
+import { UserPatchReq } from '../../../../domain/entities/user/user-update.interface'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
+import { mysqlUserRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
 
 /**
  * Controller for handling user update requests.

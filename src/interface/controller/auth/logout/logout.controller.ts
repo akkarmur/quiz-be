@@ -1,10 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
-
-import { logoutUseCase } from '../../../application/usecase/auth/logout/logout.usecase'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { handleResult } from '../../../infrastructure/helpers/res'
-import { mysqlAuthRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
-import { mysqlCommonRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
+import { logoutUseCase } from '../../../../application/usecase/auth/logout/logout.usecase'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlAuthRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
 
 /**
  * Handles the logout request by removing the refresh token

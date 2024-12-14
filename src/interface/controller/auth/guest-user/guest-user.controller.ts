@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
-
-import { guestUserUseCase } from '../../../application/usecase/auth/guest-user/guest-user.usecase'
-import { GuestUserRegistrationPostReq } from '../../../domain/entities/user/guest-user-put.interface'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { handleResult } from '../../../infrastructure/helpers/res'
-import { mysqlAuthRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
-import { mysqlCommonRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
+import { guestUserUseCase } from '../../../../application/usecase/auth/guest-user/guest-user.usecase'
+import { GuestUserRegistrationPostReq } from '../../../../domain/entities/user/guest-user-put.interface'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlAuthRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
 
 /**
  * Guest user registration controller

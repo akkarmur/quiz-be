@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { forgotPasswordUseCase } from '../../../application/usecase/auth/forgot-password/forgot-password.usecase'
-import { ForgotPasswordPatchReq } from '../../../domain/entities/auth/forgot-password.interface'
-import { StatusCodes } from '../../../infrastructure/configs/constants/statusCodes'
-import { handleResult } from '../../../infrastructure/helpers/res'
-import { mysqlAuthRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
-import { mysqlCommonRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
-import { mysqlUserRepo } from '../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
+import { forgotPasswordUseCase } from '../../../../application/usecase/auth/forgot-password/forgot-password.usecase'
+import { ForgotPasswordPatchReq } from '../../../../domain/entities/auth/forgot-password.interface'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlAuthRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/auth/auth.repo'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
+import { mysqlUserRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/user/user.repo'
 
 /**
  * Forgot Password Controller
