@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     steps:
       - name: Checkout code
@@ -44,6 +44,9 @@ jobs:
 
       - name: Validate api-docs
         run: yarn api-docs:validate
+
+      - name: Set up .env file
+        run: cp .env.example .env
 
       - name: Run unit tests
         run: yarn test --coverage
