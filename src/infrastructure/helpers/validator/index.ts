@@ -168,7 +168,7 @@ export const searchNumberValidation = (): RegExp => {
  * @param {'body' | 'query' | 'params' | 'formData'} [from] - The source of the data to extract.
  * @returns {object} The extracted data.
  */
-const getDataFromReq = (
+export const getDataFromReq = (
   req: Request,
   from?: 'body' | 'query' | 'params' | 'formData',
 ): object => {
