@@ -32,13 +32,9 @@ items:
     type:
       type: string
       example: 'noun'
-    created_by:
-      type: integer
-      example: 1001
   required:
     - vocab_group_id
     - word
     - language
     - meaning
     - pronunciation
-    - created_by
