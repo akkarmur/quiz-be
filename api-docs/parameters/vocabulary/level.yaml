@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: level
+example: '1'
+description: 'level'
+required: false

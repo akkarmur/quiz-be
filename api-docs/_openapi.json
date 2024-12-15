@@ -714,6 +714,323 @@
           }
         ]
       }
+    },
+    "/v1/vocabulary": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "get": {
+        "summary": "Get Vocabulary",
+        "tags": [
+          "Vocabulary"
+        ],
+        "operationId": "get-vocabulary",
+        "description": "Retrieve vocabulary data.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/vocabulary200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/fieldWord"
+          },
+          {
+            "$ref": "#/components/parameters/fieldLanguage"
+          },
+          {
+            "$ref": "#/components/parameters/fieldLevel"
+          },
+          {
+            "$ref": "#/components/parameters/fieldType"
+          },
+          {
+            "$ref": "#/components/parameters/order"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          }
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create Vocabulary",
+        "tags": [
+          "Vocabulary"
+        ],
+        "operationId": "post-vocabulary",
+        "description": "Register a new vocabulary entry.",
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common201"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vocabularyPostReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Edit Vocabulary",
+        "tags": [
+          "Vocabulary"
+        ],
+        "operationId": "patch-vocabulary",
+        "description": "Edit an existing vocabulary entry.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vocabularyPatchReq"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Vocabulary",
+        "tags": [
+          "Vocabulary"
+        ],
+        "operationId": "delete-vocabulary",
+        "description": "Delete a vocabulary entry.",
+        "responses": {
+          "200": {
+            "description": "Deleted Successfully / Restored Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idReq"
+          },
+          {
+            "$ref": "#/components/parameters/activeNotReq"
+          }
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
     }
   },
   "tags": [
@@ -980,6 +1297,18 @@
         "required": [
           "message",
           "data"
+        ]
+      },
+      "common200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Ok"
+          }
+        },
+        "required": [
+          "message"
         ]
       },
       "common201": {
@@ -1256,6 +1585,219 @@
         "required": [
           "device_id"
         ]
+      },
+      "vocabulary200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Vocabulary Updated Successfully"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "example": 1
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 101
+                    },
+                    "vocab_group_id": {
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "word": {
+                      "type": "string",
+                      "example": "こんにちは"
+                    },
+                    "language": {
+                      "type": "string",
+                      "example": "Japanese"
+                    },
+                    "note_word": {
+                      "type": "string",
+                      "example": "Greeting"
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "http://www.example.com/image.png"
+                    },
+                    "meaning": {
+                      "type": "string",
+                      "example": "Hello"
+                    },
+                    "pronunciation": {
+                      "type": "string",
+                      "example": "Kon-ni-chi-wa"
+                    },
+                    "note_meaning": {
+                      "type": "string",
+                      "example": "Used to greet people during the day"
+                    },
+                    "level": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "noun"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2023-12-09T17:12:15.000Z"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2023-12-09T17:12:15.000Z"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "vocab_group_id",
+                    "word",
+                    "language",
+                    "meaning",
+                    "pronunciation",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "totalCount",
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "vocabularyPostReq": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "vocab_group_id": {
+              "type": "integer",
+              "example": 12
+            },
+            "word": {
+              "type": "string",
+              "example": "こんにちは"
+            },
+            "language": {
+              "type": "string",
+              "example": "Japanese"
+            },
+            "note_word": {
+              "type": "string",
+              "example": "今日は"
+            },
+            "image": {
+              "type": "string",
+              "example": "http://www.example.com/image.png"
+            },
+            "meaning": {
+              "type": "string",
+              "example": "Hello"
+            },
+            "pronunciation": {
+              "type": "string",
+              "example": "Kon-ni-chi-wa"
+            },
+            "note_meaning": {
+              "type": "string",
+              "example": "Used to greet people during the day"
+            },
+            "level": {
+              "type": "integer",
+              "example": 1
+            },
+            "type": {
+              "type": "string",
+              "example": "noun"
+            },
+            "created_by": {
+              "type": "integer",
+              "example": 1001
+            }
+          },
+          "required": [
+            "vocab_group_id",
+            "word",
+            "language",
+            "meaning",
+            "pronunciation",
+            "created_by"
+          ]
+        }
+      },
+      "vocabularyPatchReq": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 101
+            },
+            "vocab_group_id": {
+              "type": "integer",
+              "example": 12
+            },
+            "word": {
+              "type": "string",
+              "example": "こんにちは"
+            },
+            "language": {
+              "type": "string",
+              "example": "Japanese"
+            },
+            "note_word": {
+              "type": "string",
+              "example": "今日は"
+            },
+            "image": {
+              "type": "string",
+              "example": "http://www.example.com/image.png"
+            },
+            "meaning": {
+              "type": "string",
+              "example": "Hello"
+            },
+            "pronunciation": {
+              "type": "string",
+              "example": "Kon-ni-chi-wa"
+            },
+            "note_meaning": {
+              "type": "string",
+              "example": "Used to greet people during the day"
+            },
+            "level": {
+              "type": "integer",
+              "example": 1
+            },
+            "type": {
+              "type": "string",
+              "example": "noun"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
       }
     },
     "parameters": {
@@ -1436,6 +1978,46 @@
         "name": "get_all",
         "example": true,
         "description": "you can pass active as either true or false"
+      },
+      "fieldWord": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "word",
+        "example": "こんにちは",
+        "description": "word",
+        "required": false
+      },
+      "fieldType": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "type",
+        "example": "varb",
+        "description": "type",
+        "required": false
+      },
+      "fieldLevel": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "level",
+        "example": "1",
+        "description": "level",
+        "required": false
+      },
+      "fieldLanguage": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "language",
+        "example": "japanese",
+        "description": "language",
+        "required": false
       }
     }
   }

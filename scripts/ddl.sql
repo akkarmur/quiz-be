@@ -43,3 +43,36 @@ CREATE TABLE `t_login` (
  KEY `user_id` (`user_id`),
  CONSTRAINT `t_login_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`id`)
 ) ;
+
+CREATE TABLE `t_vocabulary_group` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `description` TEXT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` BIGINT NOT NULL,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_by` BIGINT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `t_vocabulary` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `vocab_group_id` bigint NULL,
+  `word` varchar(64) NOT NULL,
+  `language` varchar(64) NOT NULL,
+  `note_word` varchar(64) NOT NULL,
+  `image` varchar(255),
+  `meaning` varchar(64) NOT NULL,
+  `pronunciation` varchar(64) NOT NULL,
+  `note_meaning` varchar(64) NOT NULL,
+  `level` INT NULL,
+  `type` varchar(64) NULL DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` bigint NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_by` bigint,
+  PRIMARY KEY (`id`),
+  KEY `vocab_group_id` (`vocab_group_id`),
+  CONSTRAINT `t_vocabulary_ibfk_1` FOREIGN KEY (`vocab_group_id`) REFERENCES `t_vocabulary_group` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=790247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

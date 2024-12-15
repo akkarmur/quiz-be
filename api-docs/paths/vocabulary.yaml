@@ -1,0 +1,183 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+get:
+  summary: Get Vocabulary
+  tags:
+    - Vocabulary
+  operationId: get-vocabulary
+  description: Retrieve vocabulary data.
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/vocabulary200'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  parameters:
+    - $ref: ../_parameter.yaml#/fieldWord
+    - $ref: ../_parameter.yaml#/fieldLanguage
+    - $ref: ../_parameter.yaml#/fieldLevel
+    - $ref: ../_parameter.yaml#/fieldType
+    - $ref: ../_parameter.yaml#/order
+    - $ref: ../_parameter.yaml#/limit
+    - $ref: ../_parameter.yaml#/offset
+  security:
+    - tokenAuth: []
+
+post:
+  summary: Create Vocabulary
+  tags:
+    - Vocabulary
+  operationId: post-vocabulary
+  description: Register a new vocabulary entry.
+  responses:
+    '201':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common201'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '409':
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common409'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/vocabularyPostReq'
+    required: true
+  security:
+    - tokenAuth: []
+
+patch:
+  summary: Edit Vocabulary
+  tags:
+    - Vocabulary
+  operationId: patch-vocabulary
+  description: Edit an existing vocabulary entry.
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/vocabularyPatchReq'
+  security:
+    - tokenAuth: []
+
+delete:
+  summary: Delete Vocabulary
+  tags:
+    - Vocabulary
+  operationId: delete-vocabulary
+  description: Delete a vocabulary entry.
+  responses:
+    '200':
+      description: Deleted Successfully / Restored Successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  parameters:
+    - $ref: ../_parameter.yaml#/idReq
+    - $ref: ../_parameter.yaml#/activeNotReq
+  security:
+    - tokenAuth: []

@@ -25,6 +25,9 @@ userPatch200:
 refreshGenerated200:
   $ref: ./schemas/refresh-token/200.yaml
 
+common200:
+  $ref: ./schemas/common/200.yaml
+
 common201:
   $ref: ./schemas/common/201.yaml
 
@@ -69,3 +72,12 @@ logoutPostReq:
 
 refreshTokenReq:
   $ref: ./schemas/refresh-token/get-req.yaml
+
+vocabulary200:
+  $ref: ./schemas/vocabulary/200.yaml
+
+vocabularyPostReq:
+  $ref: ./schemas/vocabulary/post-req.yaml
+
+vocabularyPatchReq:
+  $ref: ./schemas/vocabulary/patch-req.yaml

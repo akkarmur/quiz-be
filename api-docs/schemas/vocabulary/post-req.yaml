@@ -1,0 +1,44 @@
+type: array
+items:
+  type: object
+  properties:
+    vocab_group_id:
+      type: integer
+      example: 12
+    word:
+      type: string
+      example: 'こんにちは'
+    language:
+      type: string
+      example: 'Japanese'
+    note_word:
+      type: string
+      example: '今日は'
+    image:
+      type: string
+      example: 'http://www.example.com/image.png'
+    meaning:
+      type: string
+      example: 'Hello'
+    pronunciation:
+      type: string
+      example: 'Kon-ni-chi-wa'
+    note_meaning:
+      type: string
+      example: 'Used to greet people during the day'
+    level:
+      type: integer
+      example: 1
+    type:
+      type: string
+      example: 'noun'
+    created_by:
+      type: integer
+      example: 1001
+  required:
+    - vocab_group_id
+    - word
+    - language
+    - meaning
+    - pronunciation
+    - created_by
