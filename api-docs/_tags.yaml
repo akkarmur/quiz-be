@@ -2,3 +2,5 @@
   description: auth-apis
 - name: User
   description: user-apis
+- name: Vocabulary
+  description: vocabulary-apis
