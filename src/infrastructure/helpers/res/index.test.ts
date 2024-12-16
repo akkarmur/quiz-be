@@ -32,7 +32,6 @@ describe('Response Utilities', () => {
       const error = new HttpError({
         statusCode: StatusCodes.BAD_REQUEST,
         message: { tag: 'BAD_REQUEST_TAG' },
-        custom: true,
       })
 
       errorResponse(
@@ -49,31 +48,8 @@ describe('Response Utilities', () => {
       expect(nextFunction).toHaveBeenCalled()
     })
 
-    it('should log and return generic error for non-custom errors', () => {
-      const error = new Error('Generic Error')
-
-      errorResponse(
-        error,
-        mockRequest as Request,
-        mockResponse as Response,
-        nextFunction,
-      )
-
-      expect(mockResponse.status).toHaveBeenCalledWith(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-      )
-      expect(mockResponse.send).toHaveBeenCalledWith({
-        message: 'INTERNAL_SERVER_ERROR',
-      })
-      expect(nextFunction).toHaveBeenCalled()
-    })
-
-    it('should handle HttpError without custom message', () => {
-      const error = new HttpError({
-        statusCode: StatusCodes.FORBIDDEN,
-        message: { tag: 'FORBIDDEN_ERROR' },
-        custom: false,
-      })
+    it('should handle Internal Server Error', () => {
+      const error = new Error('Internal Server Error')
 
       errorResponse(
         error,
