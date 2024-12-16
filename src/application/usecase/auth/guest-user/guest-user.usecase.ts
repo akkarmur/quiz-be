@@ -21,7 +21,6 @@ export const guestUserUseCase = async (
   input: GuestUserRegistrationPostReq,
   authRepo: AuthRepoInterface,
   t: Transaction,
-  userId?: number,
 ): Promise<E.Either<ApplicationError, void>> => {
   // Prepare the login details to be saved or updated
   // We add the is_active, created_by, and updated_by fields
@@ -37,12 +36,8 @@ export const guestUserUseCase = async (
   }
 
   // Determine the filter criteria for checking existing login details
-  // If a user ID is provided, use it to filter the login details
-  // by user ID and device ID.
-  // Otherwise, use only the device ID to filter the login details.
-  const filterPayload = userId
-    ? { device_id: input.device_id, user_id: userId }
-    : { device_id: input.device_id }
+  // Use the device ID to filter the login details.
+  const filterPayload = { device_id: input.device_id }
 
   // Fetch login details based on the filter criteria
   // This will return either some login details or none at all.

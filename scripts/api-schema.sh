@@ -36,8 +36,11 @@ rm -rf "$OUTPUT_DIR"
 
 # Step 4: Remove any unnecessary imports or redundant code (optional cleanup)
 find "$BASE_DIR" -type f -name "*.ts" | while read -r ts_file; do
-  # Remove 'isomorphic-fetch' or other unwanted imports (example cleanup)
+  # Remove 'isomorphic-fetch' or other unwanted imports
   sed -i '/isomorphic-fetch/d' "$ts_file"
+
+  # Remove 'mapValues' import
+  sed -i "/import { mapValues } from '..\/runtime';/d" "$ts_file"
 
   # Remove empty lines at the end of the file
   sed -i '/^$/N;/^\n$/D' "$ts_file"
