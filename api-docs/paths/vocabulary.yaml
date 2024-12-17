@@ -94,51 +94,6 @@ post:
   security:
     - tokenAuth: []
 
-patch:
-  summary: Edit Vocabulary
-  tags:
-    - Vocabulary
-  operationId: patch-vocabulary
-  description: Edit an existing vocabulary entry.
-  responses:
-    '200':
-      description: Successful operation
-      content:
-        application/json:
-          schema:
-            $ref: '../_schemas.yaml#/common200'
-    '400':
-      description: Invalid parameter supplied
-      content:
-        application/json:
-          schema:
-            $ref: '../_schemas.yaml#/common400'
-    '401':
-      description: Unauthorized / Invalid Token / Token has expired / Wrong token
-      content:
-        application/json:
-          schema:
-            $ref: '../_schemas.yaml#/common401'
-    '404':
-      description: Data not found
-      content:
-        application/json:
-          schema:
-            $ref: '../_schemas.yaml#/common404'
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '../_schemas.yaml#/common500'
-  requestBody:
-    content:
-      application/json:
-        schema:
-          $ref: '../_schemas.yaml#/vocabularyPatchReq'
-  security:
-    - tokenAuth: []
-
 delete:
   summary: Delete Vocabulary
   tags:

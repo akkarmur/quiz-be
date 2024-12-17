@@ -78,6 +78,3 @@ vocabulary200:
 
 vocabularyPostReq:
   $ref: ./schemas/vocabulary/post-req.yaml
-
-vocabularyPatchReq:
-  $ref: ./schemas/vocabulary/patch-req.yaml

@@ -47,6 +47,9 @@ properties:
             type:
               type: string
               example: 'noun'
+            is_active:
+              type: boolean
+              example: true
             created_at:
               type: string
               format: date-time

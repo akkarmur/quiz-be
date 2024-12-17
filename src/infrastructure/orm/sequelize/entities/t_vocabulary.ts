@@ -81,6 +81,11 @@ Vocabulary.init(
       allowNull: true,
       defaultValue: null,
     },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
     created_at: {
       type: DataTypes.DATE,
       allowNull: false,

@@ -14,9 +14,6 @@ items:
     note_word:
       type: string
       example: '今日は'
-    image:
-      type: string
-      example: 'http://www.example.com/image.png'
     meaning:
       type: string
       example: 'Hello'

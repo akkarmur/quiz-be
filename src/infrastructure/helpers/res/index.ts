@@ -50,35 +50,9 @@ export function errorResponse(
   // If the error is a custom error, then we will use the information from the
   // error object to construct the error response.
   if (error instanceof HttpError) {
-    // If the error is a custom error, then we will check if the error has a
-    // custom error message. If it does, then we will use that message as the
-    // error response message. If it does not, then we will use the default
-    // error message.
-    //
-    // We will also check if the error has any custom error data. If it does,
-    // then we will include that data in the error response.
-    //
-    if (error.custom) {
-      // If the error has a custom error message, then we will use that message
-      // as the error response message.
-      //
-      apiError.message = req.__(error.message, error.field!)
-      apiError.errorData = error.errorData
-
-      // Since we are returning a custom error response, we will not log the
-      // error to the console.
-      //
-      res.status(error.statusCode).send(apiError)
-    } else {
-      // If the error does not have a custom error message, then we will log the
-      // error to the console and return a generic 500 Internal Server Error
-      // response.
-      //
-      logger.error(`[${new Date().toISOString()}]`, error)
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-        message: req.__('INTERNAL_SERVER_ERROR'),
-      })
-    }
+    apiError.message = req.__(error.message, error.field!)
+    apiError.errorData = error.errorData
+    res.status(error.statusCode).send(apiError)
   } else {
     // If the error is not a custom error, then we will log the error to the
     // console and return a generic 500 Internal Server Error response.
