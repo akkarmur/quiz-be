@@ -1,0 +1,10 @@
+type: object
+properties:
+  name:
+    type: string
+    example: 'Greeting'
+  description:
+    type: string
+    example: 'Used to greet people during the day'
+required:
+  - name

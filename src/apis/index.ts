@@ -4,6 +4,7 @@ import { env } from '../infrastructure/env'
 import { errorResponse } from '../infrastructure/helpers/res'
 import { authRoute } from '../interface/router/auth.route'
 import { userRoute } from '../interface/router/user.route'
+import { vocabularyGroupRoute } from '../interface/router/voca-group.route'
 import { vocabularyRoute } from '../interface/router/vocabulary.route'
 import { apiDocs } from './api-docs'
 
@@ -27,6 +28,7 @@ export function path(): Router {
   router.use('/auth', authRoute)
   router.use('/user', userRoute)
   router.use('/vocabulary', vocabularyRoute)
+  router.use('/vocabulary-group', vocabularyGroupRoute)
 
   // Add middleware to handle errors
   router.use(errorResponse)

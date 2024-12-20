@@ -73,6 +73,15 @@ logoutPostReq:
 refreshTokenReq:
   $ref: ./schemas/refresh-token/get-req.yaml
 
+vocabularyGroup200:
+  $ref: ./schemas/vocabulary-group/200.yaml
+
+vocabularyGroupPostReq:
+  $ref: ./schemas/vocabulary-group/post-req.yaml
+
+vocabularyGroupPatchReq:
+  $ref: ./schemas/vocabulary-group/patch-req.yaml
+
 vocabulary200:
   $ref: ./schemas/vocabulary/200.yaml
 

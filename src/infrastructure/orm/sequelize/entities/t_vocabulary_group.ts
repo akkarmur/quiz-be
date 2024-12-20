@@ -6,6 +6,7 @@ class VocabularyGroup extends Model {
   public id!: number
   public name!: string
   public description!: string
+  public is_active!: boolean
   public created_at!: Date
   public created_by!: number
   public updated_at!: Date
@@ -54,4 +55,4 @@ VocabularyGroup.init(
   },
 )
 
-export { VocabularyGroup }
+export default VocabularyGroup

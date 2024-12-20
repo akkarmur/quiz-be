@@ -22,5 +22,8 @@
 /v1/user:
   $ref: ./paths/user.yaml
 
+/v1/vocabulary-group:
+  $ref: ./paths/vocabulary-group.yaml
+
 /v1/vocabulary:
   $ref: ./paths/vocabulary.yaml
