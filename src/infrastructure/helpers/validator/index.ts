@@ -72,10 +72,17 @@ export const validation = (
        *
        * @param error - The error object.
        */
-      const field =
-        tag === 'OBJECT_MISSING' && !is_valid.error.details[0].path[0]
-          ? peers
-          : is_valid.error.details[0].path[0]
+      const pathArray: Array<string | number> = is_valid.error.details[0].path
+
+      const field = pathArray
+        .map((value) => {
+          if (typeof value === 'number') {
+            return `[${value}]`
+          }
+          return value
+        })
+        .join('.')
+        .replace(/\.\[/g, '[')
 
       /**
        * Get the number of the error, which is the maximum number of items that

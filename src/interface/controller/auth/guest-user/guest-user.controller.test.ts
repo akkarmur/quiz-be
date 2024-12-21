@@ -55,7 +55,6 @@ describe('GuestUserController', () => {
       mockRequest.body,
       mysqlAuthRepo,
       mockTransactionFixture,
-      userId,
     )
     expect(handleResult).toHaveBeenCalledWith(
       mockRequest,

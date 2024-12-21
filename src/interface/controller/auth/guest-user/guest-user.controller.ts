@@ -28,15 +28,10 @@ export const guestUserController = async (
     const input: GuestUserRegistrationPostReq = req.body
 
     /**
-     * Get the user ID from the request, if it exists.
-     */
-    const userId = res.locals?.user?.id
-
-    /**
      * Pass the input data to the use case and wrap it in a transaction.
      */
     const data = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
-      return await guestUserUseCase(input, mysqlAuthRepo, t, userId)
+      return await guestUserUseCase(input, mysqlAuthRepo, t)
     })
 
     /**

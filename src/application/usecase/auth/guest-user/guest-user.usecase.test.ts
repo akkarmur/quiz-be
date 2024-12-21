@@ -45,40 +45,6 @@ describe('Guest User Use Case', () => {
     }
   })
 
-  it('should update guest user when userId is provided', async () => {
-    const userId = 123
-
-    ;(mockAuthRepoInstance.getLoginDetails as jest.Mock).mockResolvedValueOnce(
-      O.some({ user_id: userId }),
-    )
-
-    const result = await guestUserUseCase(
-      mockGuestUserRequest,
-      mockAuthRepoInstance,
-      mockTransaction,
-      userId,
-    )
-
-    expect(E.isRight(result)).toBe(true)
-    if (E.isRight(result)) {
-      expect(mockAuthRepoInstance.getLoginDetails).toHaveBeenCalledWith({
-        device_id: mockGuestUserRequest.device_id,
-        user_id: userId,
-      })
-      expect(mockAuthRepoInstance.updateLoginDetails).toHaveBeenCalledWith(
-        expect.objectContaining({
-          device_id: mockGuestUserRequest.device_id,
-          device_token: mockGuestUserRequest.device_token,
-          os: mockGuestUserRequest.os,
-          is_active: true,
-          created_by: String(userId),
-          updated_by: String(userId),
-        }),
-        mockTransaction,
-      )
-    }
-  })
-
   it('should update created_by and updated_by with existing user_id when loginDetails exist', async () => {
     const existingUserId = 456
 
