@@ -2,8 +2,10 @@ import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
 import { Pagination } from '../../../../domain/entities/common/pagination'
-import { Vocabulary200Data } from '../../../../domain/entities/vocabulary/get/Vocabulary200Data'
-import { Vocabulary200DataDataInnerFromJSON } from '../../../../domain/entities/vocabulary/get/Vocabulary200DataDataInner'
+import {
+  Vocabulary200Data,
+  Vocabulary200DataDataInnerFromJSON,
+} from '../../../../domain/entities/vocabulary/get-vocabulary.interface'
 import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
 import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
 import { formatError } from '../../../../infrastructure/helpers/res'

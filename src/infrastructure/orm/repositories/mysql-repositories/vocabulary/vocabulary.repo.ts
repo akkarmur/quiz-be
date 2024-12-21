@@ -1,7 +1,8 @@
 import * as O from 'fp-ts/Option'
-import { Transaction } from 'sequelize'
+import { Optional, Transaction } from 'sequelize'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
-import { Vocabulary200DataDataInner } from '../../../../../domain/entities/vocabulary/get/Vocabulary200DataDataInner'
+import { Vocabulary200DataDataInner } from '../../../../../domain/entities/vocabulary/get-vocabulary.interface'
+import { VocabularyPostReqInner } from '../../../../../domain/entities/vocabulary/insert-vocabulary.interface'
 import { optionFormatForArray } from '../../../../helpers/fm-ts'
 import Vocabulary from '../../../sequelize/entities/t_vocabulary'
 import { mysqlCommonRepo } from '../common/common.repo'
@@ -49,32 +50,23 @@ export const mysqlVocabularyRepo: VocabularyRepoInterface = {
     return count
   },
 
-  async insert(data: any, t): Promise<Vocabulary> {
-    return await Vocabulary.create(data, { transaction: t })
+  async bulkInsert(data: VocabularyPostReqInner[], t): Promise<void> {
+    await Vocabulary.bulkCreate(
+      data as Optional<Vocabulary, keyof Vocabulary>[],
+      { transaction: t },
+    )
   },
 
-  update: async (input: Vocabulary, t: Transaction): Promise<number> => {
-    const [affectedRowCount] = await Vocabulary.update(input, {
+  async delete(
+    input: { id: number; created_by?: number },
+    t: Transaction,
+  ): Promise<number> {
+    const count = await Vocabulary.destroy({
       where: {
-        id: input.id,
+        ...input,
       },
       transaction: t,
     })
-    return affectedRowCount
-  },
-
-  delete: async (
-    input: { id: number; is_active: boolean },
-    t: Transaction,
-  ): Promise<void> => {
-    await Vocabulary.update(
-      { is_active: input.is_active },
-      {
-        where: {
-          id: input.id,
-        },
-        transaction: t,
-      },
-    )
+    return count
   },
 }
