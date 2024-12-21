@@ -18,7 +18,10 @@ import { Request, Response, NextFunction } from 'express';
 
 export const insert${MODULE_NAME^}Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const result = await insert${MODULE_NAME^}UseCase(req.body, mysql${MODULE_NAME^}Repo, res.locals.transaction);
+    const result = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {    
+      await insert${MODULE_NAME^}UseCase(req.body, mysql${MODULE_NAME^}Repo, res.locals.transaction);
+    })
+    
     handleResult(req, res, next, StatusCodes.CREATED, '${MODULE_NAME^}_CREATED_SUCCESSFULLY', result);
   } catch (error) {
     next(error);

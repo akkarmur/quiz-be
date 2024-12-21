@@ -18,7 +18,9 @@ import { Request, Response, NextFunction } from 'express';
 
 export const update${MODULE_NAME^}Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const result = await update${MODULE_NAME^}UseCase(req.body, mysql${MODULE_NAME^}Repo, res.locals.transaction);
+    const result = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
+      await update${MODULE_NAME^}UseCase(req.body, mysql${MODULE_NAME^}Repo, t);
+    })
     handleResult(req, res, next, StatusCodes.OK, 'OK', result);
   } catch (error) {
     next(error);

@@ -34,7 +34,10 @@ export const get${MODULE_NAME^}Controller = async (req: Request, res: Response, 
     const paginationData = convertToPagination(query);
 
     // Fetch data from use case
-    const data = await get${MODULE_NAME^}UseCase(paginationData, mysql${MODULE_NAME^}Repo, isActive, res.locals.transaction);
+    const data = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
+      return await get${MODULE_NAME^}UseCase(paginationData, mysql${MODULE_NAME^}Repo, isActive, t);
+    })
+    
 
     handleResult(req, res, next, StatusCodes.OK, '${MODULE_NAME^}_FETCH_SUCCESS', data);
   } catch (error) {
