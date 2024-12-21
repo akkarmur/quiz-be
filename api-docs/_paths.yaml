@@ -1,0 +1,23 @@
+/v1/auth/send-otp:
+  $ref: ./paths/send-otp.yaml
+
+/v1/auth/registration:
+  $ref: ./paths/registration.yaml
+
+/v1/auth/forgot-password:
+  $ref: ./paths/forgot-password.yaml
+
+/v1/auth/login:
+  $ref: ./paths/login.yaml
+
+/v1/auth/guest-user:
+  $ref: ./paths/guest-user.yaml
+
+/v1/auth/logout:
+  $ref: ./paths/logout.yaml
+
+/v1/auth/refresh-token:
+  $ref: ./paths/refresh-token.yaml
+
+/v1/user:
+  $ref: ./paths/user.yaml

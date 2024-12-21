@@ -1,0 +1,40 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+post:
+  summary: logout
+  tags:
+    - Auth
+  operationId: user-logout
+  description: logout the user
+  responses:
+    '200':
+        description: Log out successful
+        content:
+          application/json:
+            schema:
+              $ref: '../_schemas.yaml#/logoutSuccess200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/logoutPostReq'
+  security:
+    - tokenAuth: []

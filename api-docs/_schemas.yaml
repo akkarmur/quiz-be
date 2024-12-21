@@ -1,0 +1,71 @@
+pwdResetSuccess200:
+  $ref: ./schemas/forgot-password/200.yaml
+
+loginSuccess200:
+  $ref: ./schemas/login/200.yaml
+
+logoutSuccess200:
+  $ref: ./schemas/logout/200.yaml
+
+registrationSuccess201:
+  $ref: ./schemas/registration/201.yaml
+
+sendOtpSuccess200:
+  $ref: ./schemas/sent-otp/200.yaml
+
+getUserSuccess200:
+  $ref: ./schemas/user/200.yaml
+
+userPatchReq:
+  $ref: ./schemas/user/patch-req.yaml
+
+userPatch200:
+  $ref: ./schemas/user/patch-200.yaml
+
+refreshGenerated200:
+  $ref: ./schemas/refresh-token/200.yaml
+
+common201:
+  $ref: ./schemas/common/201.yaml
+
+common400:
+  $ref: ./schemas/common/400.yaml
+
+common401:
+  $ref: ./schemas/common/401.yaml
+
+unauthorized401:
+  $ref: ./schemas/common/unauthorized.yaml
+
+invalidCredentials401:
+  $ref: ./schemas/common/invalid-credentials.yaml
+
+common404:
+  $ref: ./schemas/common/404.yaml
+
+common409:
+  $ref: ./schemas/common/409.yaml
+
+common500:
+  $ref: ./schemas/common/500.yaml
+
+sentOtpPostReq:
+  $ref: ./schemas/sent-otp/post-req.yaml
+
+registrationPostReq:
+  $ref: ./schemas/registration/post-req.yaml
+
+guestUserRegistrationPostReq:
+  $ref: ./schemas/guest-user/post-req.yaml
+
+forgotPasswordUpdateReq:
+  $ref: ./schemas/forgot-password/update-req.yaml
+
+loginPostReq:
+  $ref: ./schemas/login/post-req.yaml
+
+logoutPostReq:
+  $ref: ./schemas/logout/post-req.yaml
+
+refreshTokenReq:
+  $ref: ./schemas/refresh-token/get-req.yaml

@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Quiz System API
+  description: Quiz System API Description
+  contact:
+    name: Rent
+  version: 1.0.0
+servers:
+  - url: /
+paths:
+  $ref: ./_paths.yaml
+tags: 
+  $ref: ./_tags.yaml
+components:
+  # common Authentication
+  securitySchemes:
+    tokenAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Authorization token that a client provides when making API calls. (e.g.
+        Authorization: Bearer <Token>)
+  schemas:
+    $ref: ./_schemas.yaml
+  parameters:
+    $ref: ./_parameter.yaml

@@ -1,0 +1,6 @@
+schema:
+  type: string
+in: query
+name: offset
+example: '1'
+description: 'page number'

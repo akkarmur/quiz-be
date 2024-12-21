@@ -1,0 +1,68 @@
+type: object
+properties:
+  message:
+    type: string
+    example: 'Details Retrieved Successfully'
+  data:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        example: 1
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+            profile_image:
+              type: string
+              nullable: true
+            role:
+              type: string
+              enum:
+                - 'user'
+                - 'admin'
+                - 'super_admin'
+            is_active:
+              type: boolean
+            created_at:
+              type: string
+              format: date-time
+            created_by:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            updated_by:
+              type: string
+          required:
+            - id
+            - name
+            - email
+            - profile_image
+            - role
+            - created_at
+            - updated_at
+        required:
+          - id
+          - name
+          - email
+          - profile_image
+          - role
+          - is_active
+          - created_at
+          - created_by
+          - updated_at
+          - updated_by
+    required:
+      - totalCount
+      - data
+required:
+  - message
+  - data

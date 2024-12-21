@@ -1,0 +1,6 @@
+schema:
+  type: string
+in: query
+name: id
+example: '1 | like'
+description: 'you can parse any field like <fieldValue> | like OR <fieldValue> | equals'

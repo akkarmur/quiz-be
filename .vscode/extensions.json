@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    // If the debugger does not work, please uncomment
+    // "ms-vscode.js-debug-nightly",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "bierner.comment-tagged-templates"
+  ]
+  // If the debugger does not work, please uncomment
+  // "unwantedRecommendations": ["ms-vscode.js-debug"]
+}

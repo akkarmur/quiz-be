@@ -1,0 +1,41 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+put:
+  summary: registration of guest user
+  tags: 
+   - Auth
+  operationId: put-registration-get-user
+  description: registration of guest user
+  responses:
+    '201':
+        description: Successfully Registered
+        content:
+          application/json:
+            schema:
+              $ref: '../_schemas.yaml#/common201'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../_schemas.yaml#/guestUserRegistrationPostReq'
+    required: true
+  security:
+    - tokenAuth: []

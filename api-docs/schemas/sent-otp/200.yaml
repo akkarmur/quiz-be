@@ -1,0 +1,7 @@
+type: object
+properties:
+  message:
+    type: string
+    example: 'OTP Sent Successfully'
+required:
+  - message

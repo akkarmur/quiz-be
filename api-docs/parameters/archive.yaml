@@ -1,0 +1,8 @@
+schema:
+  type: string
+  enum:
+    - 'true'
+in: query
+name: archive
+example: true
+description: 'you can pass archive as true to delete forever'

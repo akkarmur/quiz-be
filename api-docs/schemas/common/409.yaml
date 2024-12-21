@@ -1,0 +1,8 @@
+type: object
+properties:
+  message:
+    type: string
+    example: 'Data already exist'
+required:
+  - code
+  - message
