@@ -53,7 +53,7 @@ Vocabulary.init(
       allowNull: false,
     },
     note_word: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     image: {
@@ -69,7 +69,7 @@ Vocabulary.init(
       allowNull: false,
     },
     note_meaning: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     level: {

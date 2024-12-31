@@ -60,3 +60,6 @@ fieldLevel:
 
 fieldLanguage:
   $ref: ./parameters/vocabulary/language.yaml
+
+vocabGroupId:
+  $ref: ./parameters/vocabulary/vocab-group-id.yaml

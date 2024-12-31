@@ -1091,6 +1091,9 @@
         },
         "parameters": [
           {
+            "$ref": "#/components/parameters/idNotReq"
+          },
+          {
             "$ref": "#/components/parameters/fieldWord"
           },
           {
@@ -1101,6 +1104,9 @@
           },
           {
             "$ref": "#/components/parameters/fieldType"
+          },
+          {
+            "$ref": "#/components/parameters/vocabGroupId"
           },
           {
             "$ref": "#/components/parameters/order"
@@ -1203,6 +1209,81 @@
           }
         ]
       },
+      "patch": {
+        "summary": "Update Vocabulary",
+        "tags": [
+          "Vocabulary"
+        ],
+        "operationId": "patch-vocabulary",
+        "description": "Update a vocabulary entry.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/vocabularyPatchReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      },
       "delete": {
         "summary": "Delete Vocabulary",
         "tags": [
@@ -1265,9 +1346,6 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/idReq"
-          },
-          {
-            "$ref": "#/components/parameters/activeNotReq"
           }
         ],
         "security": [
@@ -1844,7 +1922,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "example": "Vocabulary retrieved successfully"
+            "example": "Ok"
           },
           "data": {
             "type": "object",
@@ -1946,7 +2024,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "example": "Vocabulary Updated Successfully"
+            "example": "Ok"
           },
           "data": {
             "type": "object",
@@ -2101,6 +2179,53 @@
         "required": [
           "vocab_group_id",
           "data"
+        ]
+      },
+      "vocabularyPatchReq": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 12
+          },
+          "word": {
+            "type": "string",
+            "example": "こんにちは"
+          },
+          "language": {
+            "type": "string",
+            "example": "Japanese"
+          },
+          "note_word": {
+            "type": "string",
+            "example": "今日は"
+          },
+          "meaning": {
+            "type": "string",
+            "example": "Hello"
+          },
+          "pronunciation": {
+            "type": "string",
+            "example": "Kon-ni-chi-wa"
+          },
+          "note_meaning": {
+            "type": "string",
+            "example": "Used to greet people during the day"
+          },
+          "level": {
+            "type": "integer",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "example": "noun"
+          },
+          "image": {
+            "type": "file"
+          }
+        },
+        "required": [
+          "id"
         ]
       }
     },
@@ -2299,7 +2424,7 @@
         },
         "in": "query",
         "name": "type",
-        "example": "varb",
+        "example": "verb",
         "description": "type",
         "required": false
       },
@@ -2321,6 +2446,16 @@
         "name": "language",
         "example": "japanese",
         "description": "language",
+        "required": false
+      },
+      "vocabGroupId": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "vocab_group_id",
+        "example": "1",
+        "description": "vocab_group_id",
         "required": false
       }
     }

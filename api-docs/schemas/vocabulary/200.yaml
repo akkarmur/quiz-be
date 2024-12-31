@@ -2,7 +2,7 @@ type: object
 properties:
   message:
     type: string
-    example: 'Vocabulary Updated Successfully'
+    example: 'Ok'
   data:
     type: object
     properties:

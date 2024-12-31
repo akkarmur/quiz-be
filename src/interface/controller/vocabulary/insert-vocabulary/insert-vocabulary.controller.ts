@@ -17,7 +17,7 @@ export const insertVocabularyController = async (
     const result = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
       return await insertVocabularyUseCase(
         req.body,
-        tokenDetails,
+        tokenDetails.id,
         mysqlVocabularyRepo,
         mysqlVocabularyGroupRepo,
         t,

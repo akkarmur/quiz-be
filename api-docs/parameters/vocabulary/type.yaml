@@ -2,6 +2,6 @@ schema:
   type: string
 in: query
 name: type
-example: 'varb'
+example: 'verb'
 description: 'type'
 required: false

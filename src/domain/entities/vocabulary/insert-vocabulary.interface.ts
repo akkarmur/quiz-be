@@ -32,12 +32,6 @@ export interface VocabularyPostReqInner {
    * @type {string}
    * @memberof VocabularyPostReqInner
    */
-  image?: string
-  /**
-   *
-   * @type {string}
-   * @memberof VocabularyPostReqInner
-   */
   meaning: string
   /**
    *
@@ -68,7 +62,7 @@ export interface VocabularyPostReqInner {
    * @type {number}
    * @memberof VocabularyPostReqInner
    */
-  created_by: number
+  created_by?: number
 }
 
 export interface VocabularyPostReqInnerData extends VocabularyPostReqInner {

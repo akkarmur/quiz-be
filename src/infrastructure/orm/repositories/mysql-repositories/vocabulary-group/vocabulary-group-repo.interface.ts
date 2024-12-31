@@ -1,6 +1,5 @@
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
-import { TokenDetails } from '../../../../../domain/entities/common/JWT'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
 import { VocabularyGroupDB } from '../../../../../domain/entities/vocabularyGroup/get-voca-group.interface'
 import { VocabularyGroupPostReqInner } from '../../../../../domain/entities/vocabularyGroup/insert-voca-group.interface'
@@ -32,11 +31,7 @@ export interface VocabularyGroupRepoInterface {
    * @param tokenDetails token details
    * @param t transaction
    */
-  insert(
-    data: VocabularyGroupPostReqInner,
-    tokenDetails: TokenDetails,
-    t: Transaction,
-  ): Promise<void>
+  insert(data: VocabularyGroupPostReqInner, t: Transaction): Promise<void>
 
   /**
    * Update vocabulary group
@@ -45,11 +40,7 @@ export interface VocabularyGroupRepoInterface {
    * @param t transaction
    * @returns affected row count
    */
-  update(
-    data: VocabularyGroupPatchReqInner,
-    tokenDetails: TokenDetails,
-    t: Transaction,
-  ): Promise<number>
+  update(data: VocabularyGroupPatchReqInner, t: Transaction): Promise<number>
 
   /**
    * Delete vocabulary group

@@ -32,10 +32,12 @@ get:
           schema:
             $ref: '../_schemas.yaml#/common500'
   parameters:
+    - $ref: ../_parameter.yaml#/idNotReq
     - $ref: ../_parameter.yaml#/fieldWord
     - $ref: ../_parameter.yaml#/fieldLanguage
     - $ref: ../_parameter.yaml#/fieldLevel
     - $ref: ../_parameter.yaml#/fieldType
+    - $ref: ../_parameter.yaml#/vocabGroupId
     - $ref: ../_parameter.yaml#/order
     - $ref: ../_parameter.yaml#/limit
     - $ref: ../_parameter.yaml#/offset
@@ -94,6 +96,52 @@ post:
   security:
     - tokenAuth: []
 
+patch:
+  summary: Update Vocabulary
+  tags:
+    - Vocabulary
+  operationId: patch-vocabulary
+  description: Update a vocabulary entry.
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common200'
+    '400':
+      description: Invalid parameter supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common400'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          $ref: '../_schemas.yaml#/vocabularyPatchReq'
+    required: true
+  security:
+    - tokenAuth: []
+
 delete:
   summary: Delete Vocabulary
   tags:
@@ -133,6 +181,5 @@ delete:
             $ref: '../_schemas.yaml#/common500'
   parameters:
     - $ref: ../_parameter.yaml#/idReq
-    - $ref: ../_parameter.yaml#/activeNotReq
   security:
     - tokenAuth: []

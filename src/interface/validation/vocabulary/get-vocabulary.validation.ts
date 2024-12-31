@@ -11,6 +11,7 @@ const orderByFields = [
   'language',
   'level',
   'type',
+  'vocab_group_id',
   'created_at',
   'updated_at',
 ]
@@ -24,6 +25,7 @@ export const getVocabularySchema = Joi.object({
   language: Joi.string().pattern(searchStringValidation()),
   level: Joi.string().pattern(searchStringValidation()),
   type: Joi.string().pattern(searchStringValidation()),
+  vocab_group_id: Joi.string().pattern(searchStringValidation()),
   order: Joi.alternatives(
     Joi.string().pattern(orderByValidationRegExp(orderByFields)),
     Joi.array().items(

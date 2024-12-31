@@ -28,8 +28,7 @@ export const insertVocabularyGroupController = async (
     const result = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
       // Call the use case to insert the vocabulary group
       return await insertVocabularyGroupUseCase(
-        req.body,
-        tokenDetails,
+        { ...req.body, created_by: tokenDetails.id },
         mysqlVocabularyGroupRepo,
         t,
       )

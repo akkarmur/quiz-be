@@ -45,7 +45,7 @@ export const deleteVocabularyGroupController = async (
       req,
       res,
       next,
-      StatusCodes.CREATED,
+      StatusCodes.OK,
       'DATA_DELETED_SUCCESSFULLY',
       result,
     )

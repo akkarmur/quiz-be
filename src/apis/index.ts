@@ -4,7 +4,7 @@ import { env } from '../infrastructure/env'
 import { errorResponse } from '../infrastructure/helpers/res'
 import { authRoute } from '../interface/router/auth.route'
 import { userRoute } from '../interface/router/user.route'
-import { vocabularyGroupRoute } from '../interface/router/voca-group.route'
+import { vocabularyGroupRoute } from '../interface/router/vocabulary-group.route'
 import { vocabularyRoute } from '../interface/router/vocabulary.route'
 import { apiDocs } from './api-docs'
 

@@ -1,3 +1,5 @@
+import { USER_ROLES } from '../../../infrastructure/configs/constants/enums'
+
 /**
  * TokenDetails is an interface that represents the details of a JSON Web Token
  * that are stored in the token itself.
@@ -8,6 +10,6 @@
  */
 export interface TokenDetails {
   id: number
-  role: string
+  role: USER_ROLES
   email: string
 }

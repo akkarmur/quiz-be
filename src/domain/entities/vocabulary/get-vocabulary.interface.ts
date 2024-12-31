@@ -1,3 +1,5 @@
+import { env } from '../../../infrastructure/env'
+
 /**
  *
  * @export
@@ -171,7 +173,7 @@ export function Vocabulary200DataDataInnerFromJSONTyped(
     word: json['word'],
     language: json['language'],
     note_word: json['note_word'] == null ? undefined : json['note_word'],
-    image: json['image'] == null ? undefined : json['image'],
+    image: json['image'] == null ? undefined : env.IMG_BASE_URL + json['image'],
     meaning: json['meaning'],
     pronunciation: json['pronunciation'],
     note_meaning:

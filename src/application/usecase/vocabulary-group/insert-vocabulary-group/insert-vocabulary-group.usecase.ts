@@ -1,7 +1,6 @@
 import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
-import { TokenDetails } from '../../../../domain/entities/common/JWT'
 import { convertToPagination } from '../../../../domain/entities/common/pagination'
 import { VocabularyGroupPostReqInner } from '../../../../domain/entities/vocabularyGroup/insert-voca-group.interface'
 import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
@@ -13,7 +12,6 @@ import { VocabularyGroupRepoInterface } from '../../../../infrastructure/orm/rep
  * Use case for inserting a new vocabulary group.
  *
  * @param data - The data for the vocabulary group to be inserted.
- * @param tokenDetails - The token details for the user who is performing the insertion.
  * @param repo - The repository for the vocabulary group.
  * @param t - The transaction object for the database.
  *
@@ -21,7 +19,6 @@ import { VocabularyGroupRepoInterface } from '../../../../infrastructure/orm/rep
  */
 export const insertVocabularyGroupUseCase = async (
   data: VocabularyGroupPostReqInner,
-  tokenDetails: TokenDetails,
   repo: VocabularyGroupRepoInterface,
   t: Transaction,
 ): Promise<E.Either<ApplicationError, void>> => {
@@ -36,7 +33,7 @@ export const insertVocabularyGroupUseCase = async (
   }
 
   // Otherwise, insert the new vocabulary group
-  const insertedRecord = await repo.insert(data, tokenDetails, t)
+  const insertedRecord = await repo.insert(data, t)
   // If the insertion is successful, return undefined
   return E.right(insertedRecord)
 }

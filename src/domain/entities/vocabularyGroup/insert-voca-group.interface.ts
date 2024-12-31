@@ -16,4 +16,10 @@ export interface VocabularyGroupPostReqInner {
    * @memberof VocabularyGroupPostReqInner
    */
   description?: string
+  /**
+   *
+   * @type {number}
+   * @memberof VocabularyGroupPostReqInner
+   */
+  created_by?: number
 }

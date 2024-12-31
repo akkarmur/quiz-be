@@ -3,6 +3,7 @@ import { Optional, Transaction } from 'sequelize'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
 import { Vocabulary200DataDataInner } from '../../../../../domain/entities/vocabulary/get-vocabulary.interface'
 import { VocabularyPostReqInner } from '../../../../../domain/entities/vocabulary/insert-vocabulary.interface'
+import { VocabularyPatchReqInner } from '../../../../../domain/entities/vocabulary/update-vocabulary.interface'
 import { optionFormatForArray } from '../../../../helpers/fm-ts'
 import Vocabulary from '../../../sequelize/entities/t_vocabulary'
 import { mysqlCommonRepo } from '../common/common.repo'
@@ -55,6 +56,21 @@ export const mysqlVocabularyRepo: VocabularyRepoInterface = {
       data as Optional<Vocabulary, keyof Vocabulary>[],
       { transaction: t },
     )
+  },
+
+  async update(data: VocabularyPatchReqInner, t): Promise<number> {
+    const [affectedRowCount] = await Vocabulary.update(
+      { ...data },
+      {
+        where: {
+          id: data.id,
+        },
+        transaction: t,
+      },
+    )
+
+    // Return the count of affected rows
+    return affectedRowCount
   },
 
   async delete(

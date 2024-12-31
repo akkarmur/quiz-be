@@ -1,6 +1,5 @@
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
-import { TokenDetails } from '../../../../../domain/entities/common/JWT'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
 import { VocabularyGroupDB } from '../../../../../domain/entities/vocabularyGroup/get-voca-group.interface'
 import { VocabularyGroupPostReqInner } from '../../../../../domain/entities/vocabularyGroup/insert-voca-group.interface'
@@ -81,13 +80,12 @@ export const mysqlVocabularyGroupRepo: VocabularyGroupRepoInterface = {
    */
   async insert(
     data: VocabularyGroupPostReqInner,
-    tokenDetails: TokenDetails,
     t: Transaction,
   ): Promise<void> {
     // Create a new VocabularyGroup instance in the database
     await VocabularyGroup.create(
       // Use the provided data and add the created_by field with the user's id
-      { ...data, created_by: tokenDetails.id },
+      { ...data },
       // Use the provided transaction instance
       { transaction: t },
     )
@@ -102,13 +100,12 @@ export const mysqlVocabularyGroupRepo: VocabularyGroupRepoInterface = {
    */
   async update(
     data: VocabularyGroupPatchReqInner,
-    tokenDetails: TokenDetails,
     t: Transaction,
   ): Promise<number> {
     // Update the vocabulary group record in the database
     const [affectedRowCount] = await VocabularyGroup.update(
       // Use the provided data and add the updated_by field with the user's id
-      { ...data, updated_by: tokenDetails.id },
+      { ...data },
       // Use the provided transaction instance
       {
         // Use the id field from the provided data as the condition for the update

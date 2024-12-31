@@ -22,4 +22,10 @@ export interface VocabularyGroupPatchReqInner {
    * @memberof VocabularyGroupPatchReqInner
    */
   description?: string
+  /**
+   *
+   * @type {number}
+   * @memberof VocabularyGroupPatchReqInner
+   */
+  updated_by?: number
 }

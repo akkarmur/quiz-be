@@ -28,8 +28,8 @@ export const updateVocabularyGroupController = async (
     // Call the use case to update the vocabulary group
     const result = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
       return await updateVocabularyGroupUseCase(
-        req.body,
-        tokenDetails,
+        { ...req.body, updated_by: tokenDetails.id },
+        tokenDetails.role,
         mysqlVocabularyGroupRepo,
         t,
       )
@@ -40,7 +40,7 @@ export const updateVocabularyGroupController = async (
       req,
       res,
       next,
-      StatusCodes.CREATED,
+      StatusCodes.OK,
       'DATA_UPDATED_SUCCESSFULLY',
       result,
     )

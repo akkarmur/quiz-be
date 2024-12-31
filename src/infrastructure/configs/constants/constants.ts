@@ -26,6 +26,7 @@ export const CONSTANTS = {
       width: 200,
       height: 200,
     },
+    VOCABULARY_IMAGE_FOLDER: 'vocabulary',
   },
   VALIDATION: {
     /**

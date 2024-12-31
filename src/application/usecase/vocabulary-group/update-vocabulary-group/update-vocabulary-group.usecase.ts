@@ -1,7 +1,6 @@
 import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { Transaction } from 'sequelize'
-import { TokenDetails } from '../../../../domain/entities/common/JWT'
 import { convertToPagination } from '../../../../domain/entities/common/pagination'
 import { VocabularyGroupPatchReqInner } from '../../../../domain/entities/vocabularyGroup/update-voca-group.interface'
 import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
@@ -17,29 +16,24 @@ import { VocabularyGroupRepoInterface } from '../../../../infrastructure/orm/rep
  * If the new name is taken, it will return an error.
  * If the new name is not taken, it will update the VocabularyGroup.
  * @param data The data to be updated.
- * @param tokenDetail The details of the user who is performing the update.
+ * @param role The role of the user who is performing the update.
  * @param repo The repository to use for the update.
  * @param t The transaction to use for the update.
  */
 export const updateVocabularyGroupUseCase = async (
   data: VocabularyGroupPatchReqInner,
-  tokenDetail: TokenDetails,
+  role: USER_ROLES,
   repo: VocabularyGroupRepoInterface,
   t: Transaction,
 ): Promise<E.Either<ApplicationError, void>> => {
   const existFilter = convertToPagination({
     id: data.id,
-    created_by:
-      tokenDetail.role === USER_ROLES.USER ? tokenDetail.id : undefined,
+    created_by: role === USER_ROLES.USER ? data.updated_by : undefined,
   })
   // Check if record already exists
   const existingRecord = await repo.get(existFilter, t)
   if (O.isNone(existingRecord)) {
-    return E.left(
-      formatError(StatusCodes.NOT_FOUND, 'NO_DATA_FOUND', {
-        message: `No VocabularyGroup with id ${data.id} found`,
-      }),
-    )
+    return E.left(formatError(StatusCodes.NOT_FOUND, 'NO_DATA_FOUND'))
   }
 
   const existName = convertToPagination({
@@ -56,7 +50,7 @@ export const updateVocabularyGroupUseCase = async (
   }
 
   // Update record
-  const updatedRecord = await repo.update(data, tokenDetail, t)
+  const updatedRecord = await repo.update(data, t)
   if (updatedRecord === 0) {
     return E.left(
       formatError(StatusCodes.NOT_FOUND, 'NO_DATA_FOUND', {
