@@ -20,11 +20,11 @@ class Vocabulary extends Model {
   public vocab_group_id!: number
   public word!: string
   public language!: string
-  public note_word!: string
+  public note_word?: string
   public image?: string
   public meaning!: string
   public pronunciation!: string
-  public note_meaning!: string
+  public note_meaning?: string
   public level?: number
   public type?: string
   public created_at!: Date
@@ -54,7 +54,7 @@ Vocabulary.init(
     },
     note_word: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     image: {
       type: DataTypes.STRING(255),
@@ -70,7 +70,7 @@ Vocabulary.init(
     },
     note_meaning: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     level: {
       type: DataTypes.INTEGER,
