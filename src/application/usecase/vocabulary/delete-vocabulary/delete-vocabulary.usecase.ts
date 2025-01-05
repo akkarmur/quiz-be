@@ -16,7 +16,7 @@ export const deleteVocabularyUseCase = async (
   t: Transaction,
 ): Promise<E.Either<ApplicationError, void>> => {
   const existFilter = convertToPagination({
-    id: tokenDetails.id,
+    id: id,
     created_by:
       tokenDetails.role === USER_ROLES.USER ? tokenDetails.id : undefined,
   })

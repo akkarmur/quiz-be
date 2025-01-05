@@ -18,7 +18,7 @@ export const updateVocabularyUseCase = async (
   t: Transaction,
 ): Promise<E.Either<ApplicationError, void>> => {
   const existFilter = convertToPagination({
-    id: input.updated_by,
+    id: input.id,
     created_by: role === USER_ROLES.USER ? input.updated_by : undefined,
   })
   // Check if record already exists
