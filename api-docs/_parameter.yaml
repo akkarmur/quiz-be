@@ -48,3 +48,18 @@ activeNotReq:
 
 getAllNotReq:
   $ref: ./parameters/get-all-not-req.yaml
+
+fieldWord:
+  $ref: ./parameters/vocabulary/word.yaml
+
+fieldType:
+  $ref: ./parameters/vocabulary/type.yaml
+
+fieldLevel:
+  $ref: ./parameters/vocabulary/level.yaml
+
+fieldLanguage:
+  $ref: ./parameters/vocabulary/language.yaml
+
+vocabGroupId:
+  $ref: ./parameters/vocabulary/vocab-group-id.yaml

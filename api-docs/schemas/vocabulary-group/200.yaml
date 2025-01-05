@@ -1,0 +1,47 @@
+type: object
+properties:
+  message:
+    type: string
+    example: 'Ok'
+  data:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        example: 1
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 101
+            name:
+              type: string
+              example: 'Greeting'
+            description:
+              type: string
+              example: 'Used to greet people during the day'
+            is_active:
+              type: boolean
+              example: true
+            created_at:
+              type: string
+              format: date-time
+              example: '2023-12-09T17:12:15.000Z'
+            updated_at:
+              type: string
+              format: date-time
+              example: '2023-12-09T17:12:15.000Z'
+          required:
+            - id
+            - name
+            - created_at
+            - updated_at
+    required:
+      - totalCount
+      - data
+required:
+  - message
+  - data

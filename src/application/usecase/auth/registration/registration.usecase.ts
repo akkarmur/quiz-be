@@ -93,7 +93,6 @@ export const registrationUseCase = async (
       id: user.id,
       email: user.email,
       role: user.role,
-      device_id: input.device_id,
     }
 
     // Generate refresh and access tokens using JWT

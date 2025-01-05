@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: vocab_group_id
+example: '1'
+description: 'vocab_group_id'
+required: false

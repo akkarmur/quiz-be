@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 101
+  name:
+    type: string
+    example: 'Greeting'
+  description:
+    type: string
+    example: 'Used to greet people during the day'
+required:
+  - id

@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: type
+example: 'verb'
+description: 'type'
+required: false

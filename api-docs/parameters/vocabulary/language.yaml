@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: language
+example: 'japanese'
+description: 'language'
+required: false

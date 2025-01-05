@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: word
+example: 'こんにちは'
+description: 'word'
+required: false
