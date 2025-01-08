@@ -86,3 +86,20 @@ CREATE TABLE
     KEY `vocab_group_id` (`vocab_group_id`),
     CONSTRAINT `t_vocabulary_ibfk_1` FOREIGN KEY (`vocab_group_id`) REFERENCES `t_vocabulary_group` (`id`)
   ) ENGINE = InnoDB AUTO_INCREMENT = 790247 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+-- t_user_vocabulary_score definition
+CREATE TABLE
+  `t_user_vocabulary_score` (
+    `vocab_id` bigint NOT NULL,
+    `attempt_count` INT NOT NULL,
+    `correct_count` INT NOT NULL,
+    `is_active` tinyint NOT NULL DEFAULT '1',
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_by` bigint NOT NULL,
+    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `updated_by` bigint,
+    PRIMARY KEY (`vocab_id`, `created_by`),
+    KEY `vocab_id` (`vocab_id`),
+    CONSTRAINT `t_user_vocab_score_ibfk_1` FOREIGN KEY (`vocab_id`) REFERENCES `t_vocabulary` (`id`),
+    CONSTRAINT `t_user_vocab_score_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `m_user` (`id`)
+  ) ENGINE = InnoDB AUTO_INCREMENT = 790247 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;

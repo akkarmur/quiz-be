@@ -27,6 +27,7 @@ class Vocabulary extends Model {
   public note_meaning?: string
   public level?: number
   public type?: string
+  public is_active!: boolean
   public created_at!: Date
   public created_by!: number
   public updated_at!: Date

@@ -27,3 +27,6 @@
 
 /v1/vocabulary:
   $ref: ./paths/vocabulary.yaml
+
+/v1/user-vocabulary-score:
+  $ref: ./paths/user-vocabulary-score.yaml

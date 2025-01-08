@@ -6,7 +6,7 @@ import {
   VocabularyGroup200Data,
   VocabularyGroup200DataDataInner,
   VocabularyGroup200DataDataInnerFromJSONTyped,
-} from '../../../../domain/entities/vocabularyGroup/get-voca-group.interface'
+} from '../../../../domain/entities/vocabulary-group/get-voca-group.interface'
 import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
 import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
 import { formatError } from '../../../../infrastructure/helpers/res'

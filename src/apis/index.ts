@@ -3,6 +3,7 @@ import { Router, static as static_ } from 'express'
 import { env } from '../infrastructure/env'
 import { errorResponse } from '../infrastructure/helpers/res'
 import { authRoute } from '../interface/router/auth.route'
+import { userVocabularyScoreRoute } from '../interface/router/user-vocabulary-score.route'
 import { userRoute } from '../interface/router/user.route'
 import { vocabularyGroupRoute } from '../interface/router/vocabulary-group.route'
 import { vocabularyRoute } from '../interface/router/vocabulary.route'
@@ -29,6 +30,7 @@ export function path(): Router {
   router.use('/user', userRoute)
   router.use('/vocabulary', vocabularyRoute)
   router.use('/vocabulary-group', vocabularyGroupRoute)
+  router.use('/user-vocabulary-score', userVocabularyScoreRoute)
 
   // Add middleware to handle errors
   router.use(errorResponse)

@@ -90,3 +90,6 @@ vocabularyPostReq:
 
 vocabularyPatchReq:
   $ref: ./schemas/vocabulary/patch-req.yaml
+
+userVocabularyScorePostReq:
+  $ref: ./schemas/user-vocabulary-score/post-req.yaml

@@ -1354,24 +1354,100 @@
           }
         ]
       }
+    },
+    "/v1/user-vocabulary-score": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "put": {
+        "summary": "Create User Vocabulary Score",
+        "tags": [
+          "User Vocabulary Score"
+        ],
+        "operationId": "put-user-vocabulary-score",
+        "description": "Register a new vocabulary score entry.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userVocabularyScorePostReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
     }
   },
   "tags": [
     {
       "name": "Auth",
-      "description": "auth-apis"
+      "description": "Auth APIs"
     },
     {
       "name": "User",
-      "description": "user-apis"
+      "description": "User APIs"
     },
     {
       "name": "Vocabulary group",
-      "description": "vocabulary-group-apis"
+      "description": "Vocabulary group APIs"
     },
     {
       "name": "Vocabulary",
-      "description": "vocabulary-apis"
+      "description": "Vocabulary APIs"
+    },
+    {
+      "name": "User Vocabulary Score",
+      "description": "User Vocabulary Score APIs"
     }
   ],
   "components": {
@@ -2226,6 +2302,23 @@
         },
         "required": [
           "id"
+        ]
+      },
+      "userVocabularyScorePostReq": {
+        "type": "object",
+        "properties": {
+          "vocab_id": {
+            "type": "number",
+            "example": 1
+          },
+          "is_correct": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "vocab_id",
+          "is_correct"
         ]
       }
     },
