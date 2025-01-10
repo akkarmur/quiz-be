@@ -7,10 +7,10 @@ import { deleteVocabularyGroupController } from '../controller/vocabulary-group/
 import { getVocabularyGroupController } from '../controller/vocabulary-group/get-vocabulary-group/get-vocabulary-group.controller'
 import { insertVocabularyGroupController } from '../controller/vocabulary-group/insert-vocabulary-group/insert-vocabulary-group.controller'
 import { updateVocabularyGroupController } from '../controller/vocabulary-group/update-vocabulary-group/update-vocabulary-group.controller'
-import { deleteVocabularyGroupSchema } from '../validation/vocabularyGroup/delete-vocabularyGroup.validation'
-import { getVocabularyGroupSchema } from '../validation/vocabularyGroup/get-vocabularyGroup.validation'
-import { insertVocabularyGroupSchema } from '../validation/vocabularyGroup/insert-vocabularyGroup.validation'
-import { updateVocabularyGroupSchema } from '../validation/vocabularyGroup/update-vocabularyGroup.validation'
+import { deleteVocabularyGroupSchema } from '../validation/vocabulary-group/delete-vocabularyGroup.validation'
+import { getVocabularyGroupSchema } from '../validation/vocabulary-group/get-vocabularyGroup.validation'
+import { insertVocabularyGroupSchema } from '../validation/vocabulary-group/insert-vocabularyGroup.validation'
+import { updateVocabularyGroupSchema } from '../validation/vocabulary-group/update-vocabularyGroup.validation'
 
 const route = Router()
 
