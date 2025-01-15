@@ -2126,6 +2126,10 @@
                       "type": "boolean",
                       "example": true
                     },
+                    "created_by": {
+                      "type": "integer",
+                      "example": 1
+                    },
                     "created_at": {
                       "type": "string",
                       "format": "date-time",
