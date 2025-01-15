@@ -8,3 +8,5 @@
   description: Vocabulary APIs
 - name: User Vocabulary Score
   description: User Vocabulary Score APIs
+- name: Quiz
+  description: Quiz APIs

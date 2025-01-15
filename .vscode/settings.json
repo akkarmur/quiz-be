@@ -145,5 +145,8 @@
     "JERA",
     "cursus"
   ],
-  "cSpell.ignorePaths": ["api-docs", ".devcontainer"]
+  "cSpell.ignorePaths": ["api-docs", ".devcontainer"],
+  "[sql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+  }
 }

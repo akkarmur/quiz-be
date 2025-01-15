@@ -1,4 +1,6 @@
 import { env } from '../../../infrastructure/env'
+import UserVocabularyScore from '../../../infrastructure/orm/sequelize/entities/t_user_vocabulary_score'
+import Vocabulary from '../../../infrastructure/orm/sequelize/entities/t_vocabulary'
 
 /**
  *
@@ -130,7 +132,56 @@ export interface Vocabulary200DataDataInner {
    * @memberof Vocabulary200DataDataInner
    */
   updated_at: Date
+
+  user_vocabulary_score?: {
+    /**
+     * @type {number}
+     * Attempt count of the user for the vocabulary
+     */
+    attempt_count: number
+
+    /**
+     * @type {number}
+     * Score of the user for the vocabulary in percentage
+     */
+    score: number
+
+    /**
+     * @type {number}
+     * User id who created the vocabulary
+     */
+    user_id: number
+  }
 }
+
+interface IUserVocabularyScore {
+  vocab_id: number
+  attempt_count: number
+  score?: number // Calculated field
+  created_by: number
+}
+
+export interface IVocabulary extends Vocabulary {
+  id: number
+  vocab_group_id: number
+  word: string
+  language: string
+  note_word?: string
+  image?: string
+  meaning: string
+  pronunciation: string
+  note_meaning?: string
+  level?: number
+  type?: string
+  is_active: boolean
+  created_at: Date
+  updated_at: Date
+  user_scores?: IUserVocabularyScore[] // Association
+}
+
+export type VocabularyQuiz =
+  | Pick<Vocabulary, 'id'>
+  | Pick<UserVocabularyScore, 'attempt_count' | 'correct_count' | 'created_by'>
 
 /**
  * Check if a given object implements the Vocabulary200DataDataInner interface.
@@ -156,17 +207,39 @@ export function instanceOfVocabulary200DataDataInner(
 export function Vocabulary200DataDataInnerFromJSON(
   json: any,
   ignoreDiscriminator: boolean = false,
+  isUser: boolean = false,
 ): Vocabulary200DataDataInner {
-  return Vocabulary200DataDataInnerFromJSONTyped(json, ignoreDiscriminator)
+  return Vocabulary200DataDataInnerFromJSONTyped(
+    json,
+    ignoreDiscriminator,
+    isUser,
+  )
 }
 
 export function Vocabulary200DataDataInnerFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean = false,
+  isUser: boolean = false,
 ): Vocabulary200DataDataInner {
   if (json == null) {
     return json
   }
+  const user_vocabulary_score = isUser
+    ? {
+        attempt_count:
+          json?.user_scores[0]?.dataValues?.attempt_count == null
+            ? undefined
+            : json?.user_scores[0]?.dataValues?.attempt_count,
+        score:
+          json?.user_scores[0]?.dataValues?.score == null
+            ? undefined
+            : json?.user_scores[0]?.dataValues?.score,
+        user_id:
+          json?.user_scores[0]?.dataValues?.created_by == null
+            ? undefined
+            : json?.user_scores[0]?.dataValues?.created_by,
+      }
+    : undefined
   return {
     id: json['id'],
     vocab_group_id: json['vocab_group_id'],
@@ -187,5 +260,6 @@ export function Vocabulary200DataDataInnerFromJSONTyped(
       : undefined,
     created_at: new Date(json['created_at']),
     updated_at: new Date(json['updated_at']),
+    user_vocabulary_score: user_vocabulary_score,
   }
 }

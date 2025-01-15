@@ -778,6 +778,9 @@
             "$ref": "#/components/parameters/fieldName"
           },
           {
+            "$ref": "#/components/parameters/vocabularyPublic"
+          },
+          {
             "$ref": "#/components/parameters/order"
           },
           {
@@ -1426,6 +1429,97 @@
           }
         ]
       }
+    },
+    "/v1/quiz": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "get": {
+        "summary": "Get Quiz",
+        "tags": [
+          "Quiz"
+        ],
+        "operationId": "get-quiz",
+        "description": "Retrieve quiz data.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/quiz200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/fieldQuizType"
+          },
+          {
+            "$ref": "#/components/parameters/fieldLevel"
+          },
+          {
+            "$ref": "#/components/parameters/fieldType"
+          },
+          {
+            "$ref": "#/components/parameters/vocabGroupId"
+          },
+          {
+            "$ref": "#/components/parameters/fieldScore"
+          },
+          {
+            "$ref": "#/components/parameters/fieldAttempt"
+          },
+          {
+            "$ref": "#/components/parameters/order"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          }
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
     }
   },
   "tags": [
@@ -1448,6 +1542,10 @@
     {
       "name": "User Vocabulary Score",
       "description": "User Vocabulary Score APIs"
+    },
+    {
+      "name": "Quiz",
+      "description": "Quiz APIs"
     }
   ],
   "components": {
@@ -2037,13 +2135,18 @@
                       "type": "string",
                       "format": "date-time",
                       "example": "2023-12-09T17:12:15.000Z"
+                    },
+                    "is_public": {
+                      "type": "boolean",
+                      "example": true
                     }
                   },
                   "required": [
                     "id",
                     "name",
                     "created_at",
-                    "updated_at"
+                    "updated_at",
+                    "is_public"
                   ]
                 }
               }
@@ -2069,6 +2172,10 @@
           "description": {
             "type": "string",
             "example": "Used to greet people during the day"
+          },
+          "is_public": {
+            "type": "boolean",
+            "example": true
           }
         },
         "required": [
@@ -2089,6 +2196,10 @@
           "description": {
             "type": "string",
             "example": "Used to greet people during the day"
+          },
+          "is_public": {
+            "type": "boolean",
+            "example": true
           }
         },
         "required": [
@@ -2171,6 +2282,26 @@
                       "type": "string",
                       "format": "date-time",
                       "example": "2023-12-09T17:12:15.000Z"
+                    },
+                    "user_vocabulary_score": {
+                      "type": "object",
+                      "properties": {
+                        "user_id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "attempt_count": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "score": {
+                          "type": "integer",
+                          "example": 10
+                        }
+                      },
+                      "required": [
+                        "user_id"
+                      ]
                     }
                   },
                   "required": [
@@ -2319,6 +2450,52 @@
         "required": [
           "vocab_id",
           "is_correct"
+        ]
+      },
+      "quiz200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Ok"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "vocab_id": {
+                  "type": "integer",
+                  "example": 101
+                },
+                "question": {
+                  "type": "string",
+                  "example": "こんにちは"
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "Hello"
+                  }
+                },
+                "answer": {
+                  "type": "string",
+                  "example": "Hello"
+                }
+              },
+              "required": [
+                "vocab_id",
+                "question",
+                "options",
+                "answer"
+              ]
+            }
+          }
+        },
+        "required": [
+          "message",
+          "data"
         ]
       }
     },
@@ -2549,6 +2726,60 @@
         "name": "vocab_group_id",
         "example": "1",
         "description": "vocab_group_id",
+        "required": false
+      },
+      "vocabularyPublic": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "is_public",
+        "example": "true",
+        "description": "is_public",
+        "required": false
+      },
+      "fieldScore": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "score",
+        "examples": {
+          "less_than": {
+            "value": "50 | less_than"
+          },
+          "greater_than": {
+            "value": "100 | greater_than"
+          }
+        },
+        "description": "Score should be in percentage",
+        "required": false
+      },
+      "fieldAttempt": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "attempt_count",
+        "examples": {
+          "less_than": {
+            "value": "50 | less_than"
+          },
+          "greater_than": {
+            "value": "100 | greater_than"
+          }
+        },
+        "description": "attempt_count",
+        "required": false
+      },
+      "fieldQuizType": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "quiz_type",
+        "example": "word",
+        "description": "quiz_type should be in word, meaning, both",
         "required": false
       }
     }

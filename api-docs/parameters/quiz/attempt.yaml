@@ -1,0 +1,11 @@
+schema:
+  type: string
+in: query
+name: attempt_count
+examples:
+  less_than:
+    value: 50 | less_than
+  greater_than:
+    value: 100 | greater_than
+description: 'attempt_count'
+required: false

@@ -56,6 +56,7 @@ UserVocabularyScore.init(
     },
     created_by: {
       type: DataTypes.BIGINT,
+      primaryKey: true,
       allowNull: false,
       references: {
         model: 'm_user',
@@ -78,5 +79,14 @@ UserVocabularyScore.init(
     sequelize: sequelize,
   },
 )
+
+Vocabulary.hasMany(UserVocabularyScore, {
+  foreignKey: 'vocab_id',
+  as: 'user_scores',
+})
+
+UserVocabularyScore.belongsTo(Vocabulary, {
+  foreignKey: 'vocab_id',
+})
 
 export default UserVocabularyScore

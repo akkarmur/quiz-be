@@ -1,0 +1,32 @@
+type: object
+properties:
+  message:
+    type: string
+    example: 'Ok'
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        vocab_id:
+          type: integer
+          example: 101
+        question:
+          type: string
+          example: 'こんにちは'
+        options:
+          type: array
+          items:
+            type: string
+            example: 'Hello'
+        answer:
+          type: string
+          example: 'Hello'
+      required:
+        - vocab_id
+        - question
+        - options
+        - answer
+required:
+  - message
+  - data

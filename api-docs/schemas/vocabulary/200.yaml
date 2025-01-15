@@ -58,6 +58,20 @@ properties:
               type: string
               format: date-time
               example: '2023-12-09T17:12:15.000Z'
+            user_vocabulary_score:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: 1
+                attempt_count:
+                  type: integer
+                  example: 1
+                score:
+                  type: integer
+                  example: 10
+              required:
+                - user_id
           required:
             - id
             - vocab_group_id

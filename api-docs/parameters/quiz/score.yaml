@@ -1,0 +1,11 @@
+schema:
+  type: string
+in: query
+name: score
+examples:
+  less_than:
+    value: 50 | less_than
+  greater_than:
+    value: 100 | greater_than
+description: 'Score should be in percentage'
+required: false

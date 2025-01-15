@@ -59,6 +59,13 @@ export interface VocabularyGroup200DataDataInner {
    * @memberof VocabularyGroup200DataDataInner
    */
   description?: string
+
+  /**
+   *
+   * @type {boolean}
+   * @memberof VocabularyGroup200DataDataInner
+   */
+  is_public?: boolean
   /**
    *
    * @type {boolean}
@@ -81,7 +88,13 @@ export interface VocabularyGroup200DataDataInner {
 
 export type VocabularyGroupDB = Pick<
   VocabularyGroup,
-  'id' | 'name' | 'description' | 'is_active' | 'created_at' | 'updated_at'
+  | 'id'
+  | 'name'
+  | 'description'
+  | 'is_public'
+  | 'is_active'
+  | 'created_at'
+  | 'updated_at'
 >
 
 export function VocabularyGroup200DataDataInnerFromJSONTyped(
@@ -95,6 +108,7 @@ export function VocabularyGroup200DataDataInnerFromJSONTyped(
     id: json['id'],
     name: json['name'],
     description: json['description'],
+    is_public: json['is_public'] == null ? undefined : json['is_public'],
     is_active: ignoreDiscriminator
       ? json['is_active'] == null
         ? undefined

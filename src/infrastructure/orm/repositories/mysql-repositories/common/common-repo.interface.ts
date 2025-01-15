@@ -33,6 +33,6 @@ export type CommonRepoInterface<WorkUnitCtx> = {
    */
   whereCondition: (
     fields?: PaginationField[],
-    active?: 'active' | 'inactive' | 'both',
+    active?: 'active' | 'inactive' | 'both' | 'skip',
   ) => WhereOptions
 }

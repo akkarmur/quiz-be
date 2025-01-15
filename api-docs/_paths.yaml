@@ -30,3 +30,6 @@
 
 /v1/user-vocabulary-score:
   $ref: ./paths/user-vocabulary-score.yaml
+
+/v1/quiz:
+  $ref: ./paths/quiz.yaml

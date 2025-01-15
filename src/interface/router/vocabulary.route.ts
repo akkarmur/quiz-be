@@ -20,7 +20,12 @@ const upload = multer()
 /**
  * For getting vocabulary
  */
-route.get('/', validation(getVocabularySchema), getVocabularyController)
+route.get(
+  '/',
+  verifyJWTHS512Middleware(env.JWT_HS512_ACCESS_SECRET, undefined, false),
+  validation(getVocabularySchema),
+  getVocabularyController,
+)
 
 route.post(
   '/',

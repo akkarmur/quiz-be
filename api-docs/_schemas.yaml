@@ -93,3 +93,6 @@ vocabularyPatchReq:
 
 userVocabularyScorePostReq:
   $ref: ./schemas/user-vocabulary-score/post-req.yaml
+
+quiz200:
+  $ref: ./schemas/quiz/200.yaml
