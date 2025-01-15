@@ -74,6 +74,13 @@ export interface VocabularyGroup200DataDataInner {
   is_active?: boolean
   /**
    *
+   * @type {number}
+   * @memberof VocabularyGroup200DataDataInner
+   */
+  created_by: number
+  /**
+   *
+   * @type {Date}
    * @type {Date}
    * @memberof VocabularyGroup200DataDataInner
    */
@@ -93,6 +100,8 @@ export type VocabularyGroupDB = Pick<
   | 'description'
   | 'is_public'
   | 'is_active'
+  | 'created_by'
+  | 'created_at'
   | 'created_at'
   | 'updated_at'
 >
@@ -114,6 +123,7 @@ export function VocabularyGroup200DataDataInnerFromJSONTyped(
         ? undefined
         : json['is_active']
       : undefined,
+    created_by: json['created_by'],
     created_at: new Date(json['created_at']),
     updated_at: new Date(json['updated_at']),
   }

@@ -13,7 +13,9 @@ const orderByFields = ['id', 'vocab_group_id', 'created_at', 'updated_at']
  * This schema includes pagination, filtering, and optional flags.
  */
 export const quizSchema = Joi.object({
-  level: Joi.string().pattern(searchStringValidation()),
+  level: Joi.alternatives()
+    .try(Joi.number(), Joi.array().items(Joi.number()))
+    .optional(),
   type: Joi.string().pattern(searchStringValidation()),
   quiz_type: Joi.string().pattern(searchStringValidation()),
   vocab_group_id: Joi.string().pattern(searchStringValidation()),
