@@ -151,6 +151,24 @@ export const mysqlVocabularyRepo: VocabularyRepoInterface = {
     return count
   },
 
+  async getLevel(
+    paginationData: Pagination,
+    t,
+  ): Promise<O.Option<Vocabulary[]>> {
+    const { fields, limit, offset } = paginationData
+    const where = mysqlCommonRepo.whereCondition(fields)
+
+    const data = await Vocabulary.findAll({
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('level')), 'level']],
+      where,
+      limit,
+      offset,
+      transaction: t,
+    })
+
+    return optionFormatForArray(data)
+  },
+
   async getOption(
     type: string[],
     vocab_group_id: number[],

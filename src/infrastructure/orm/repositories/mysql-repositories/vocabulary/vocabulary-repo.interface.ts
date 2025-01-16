@@ -23,6 +23,11 @@ export interface VocabularyRepoInterface {
     t: Transaction,
   ): Promise<number>
 
+  getLevel(
+    paginationData: Pagination,
+    t: Transaction,
+  ): Promise<O.Option<Vocabulary[]>>
+
   getOption(
     type: string[],
     vocab_group_id: number[],

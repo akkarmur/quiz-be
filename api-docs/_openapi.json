@@ -1358,6 +1358,79 @@
         ]
       }
     },
+    "/v1/vocabulary/level": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/acceptLanguage"
+        }
+      ],
+      "get": {
+        "summary": "Get Level",
+        "tags": [
+          "Vocabulary"
+        ],
+        "operationId": "get-level",
+        "description": "Retrieve level data.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/quiz200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized / Invalid Token / Token has expired / Wrong token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common404"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/common500"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/vocabGroupId"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          }
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ]
+      }
+    },
     "/v1/user-vocabulary-score": {
       "parameters": [
         {
