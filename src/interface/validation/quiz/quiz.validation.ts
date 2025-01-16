@@ -18,7 +18,7 @@ export const quizSchema = Joi.object({
     .optional(),
   type: Joi.string().pattern(searchStringValidation()),
   quiz_type: Joi.string().pattern(searchStringValidation()),
-  vocab_group_id: Joi.string().pattern(searchStringValidation()),
+  vocab_group_id: Joi.number().required(),
   score: Joi.string().pattern(searchNumberValidation()),
   attempt_count: Joi.string().pattern(searchNumberValidation()),
   order: Joi.alternatives(

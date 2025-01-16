@@ -2730,7 +2730,7 @@
         "name": "vocab_group_id",
         "example": "1",
         "description": "vocab_group_id",
-        "required": false
+        "required": true
       },
       "vocabularyPublic": {
         "schema": {
