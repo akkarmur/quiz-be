@@ -156,10 +156,28 @@ export const mysqlVocabularyRepo: VocabularyRepoInterface = {
     t,
   ): Promise<O.Option<Vocabulary[]>> {
     const { fields, limit, offset } = paginationData
-    const where = mysqlCommonRepo.whereCondition(fields)
+    const where = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name !== 'created_by'),
+    )
+
+    const whereForUserCreated = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name === 'created_by'),
+      'skip',
+    )
 
     const data = await Vocabulary.findAll({
-      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('level')), 'level']],
+      attributes: [[Sequelize.literal('DISTINCT level'), 'level']],
+      include: [
+        {
+          model: VocabularyGroup,
+          attributes: [],
+          where: {
+            [Op.or]: [{ is_public: true }, whereForUserCreated],
+          },
+          required: true,
+        },
+      ],
+      group: ['Vocabulary.level'],
       where,
       limit,
       offset,
