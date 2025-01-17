@@ -21,7 +21,9 @@ export const mysqlVocabularyGroupRepo: VocabularyGroupRepoInterface = {
     t,
   ): Promise<O.Option<VocabularyGroupDB[]>> {
     const { fields, order, limit, offset } = paginationData
-    const where = mysqlCommonRepo.whereCondition(fields)
+    const where = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name !== 'created_by'),
+    )
 
     const whereForUserCreated = mysqlCommonRepo.whereCondition(
       fields?.filter((field) => field.name === 'created_by'),
