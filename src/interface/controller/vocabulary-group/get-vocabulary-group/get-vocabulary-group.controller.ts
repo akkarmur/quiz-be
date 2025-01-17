@@ -30,10 +30,7 @@ export const getVocabularyGroupController = async (
     // Determine query conditions and pagination
     // Determine if only user's own data should be fetched or all active data
     let isActive = false
-    if (tokenDetails?.role === USER_ROLES.USER) {
-      // If the user is a USER, restrict the results to the user's own data
-      query.created_by = `${tokenDetails.id}`
-    } else if (tokenDetails?.role === USER_ROLES.ADMIN) {
+    if (tokenDetails?.role === USER_ROLES.ADMIN) {
       // If the user is an ADMIN, fetch all active data
       isActive = true
     }
