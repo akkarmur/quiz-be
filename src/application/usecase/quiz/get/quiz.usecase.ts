@@ -56,15 +56,21 @@ export const getQuizUseCase = async (
       isWordToMeaning = Math.random() > 0.5
     }
 
-    const question = isWordToMeaning ? item.word : item.meaning
-    const answer = isWordToMeaning ? item.meaning : item.word
+    const question = isWordToMeaning
+      ? item.word + `${item.note_word ? ' - ' + item.note_word : ''}`
+      : item.meaning
+    const answer = isWordToMeaning
+      ? item.meaning
+      : item.word + `${item.note_word ? ' - ' + item.note_word : ''}`
 
     // Generate options by filtering options for the same type and shuffling
     const relatedOptions = optionsData.filter(
       (option) => option.type === item.type,
     )
     const optionPool = relatedOptions.map((opt) =>
-      isWordToMeaning ? opt.meaning : opt.word,
+      isWordToMeaning
+        ? opt.meaning
+        : opt.word + `${opt.note_word ? ' - ' + opt.note_word : ''}`,
     )
 
     // Ensure answer is included in options

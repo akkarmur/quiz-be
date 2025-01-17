@@ -1377,7 +1377,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/quiz200"
+                  "$ref": "#/components/schemas/level200"
                 }
               }
             }
@@ -2390,6 +2390,47 @@
                     "pronunciation",
                     "created_at",
                     "updated_at"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "totalCount",
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "level200": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Ok"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "totalCount": {
+                "type": "integer",
+                "example": 1
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "type": "integer",
+                      "example": 101
+                    }
+                  },
+                  "required": [
+                    "level"
                   ]
                 }
               }

@@ -85,6 +85,9 @@ vocabularyGroupPatchReq:
 vocabulary200:
   $ref: ./schemas/vocabulary/200.yaml
 
+level200:
+  $ref: ./schemas/level/200.yaml
+
 vocabularyPostReq:
   $ref: ./schemas/vocabulary/post-req.yaml
 

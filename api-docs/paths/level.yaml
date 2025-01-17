@@ -12,7 +12,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../_schemas.yaml#/quiz200'
+            $ref: '../_schemas.yaml#/level200'
     '401':
       description: Unauthorized / Invalid Token / Token has expired / Wrong token
       content:
