@@ -1,5 +1,5 @@
 import * as O from 'fp-ts/Option'
-import { Transaction } from 'sequelize'
+import { GroupedCountResultItem, Transaction } from 'sequelize'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
 import { IVocabulary } from '../../../../../domain/entities/vocabulary/get-vocabulary.interface'
 import { VocabularyPostReqInnerData } from '../../../../../domain/entities/vocabulary/insert-vocabulary.interface'
@@ -23,6 +23,10 @@ export interface VocabularyRepoInterface {
     t: Transaction,
   ): Promise<number>
 
+  getLevelCount(
+    paginationData: Pagination,
+    t: Transaction,
+  ): Promise<GroupedCountResultItem[]>
   getLevel(
     paginationData: Pagination,
     t: Transaction,

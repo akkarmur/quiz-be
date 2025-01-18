@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: meaning
+example: 'Hello'
+description: 'meaning'
+required: false

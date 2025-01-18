@@ -1112,6 +1112,18 @@
             "$ref": "#/components/parameters/vocabGroupId"
           },
           {
+            "$ref": "#/components/parameters/fieldMeaning"
+          },
+          {
+            "$ref": "#/components/parameters/fieldPronunciation"
+          },
+          {
+            "$ref": "#/components/parameters/fieldNoteWord"
+          },
+          {
+            "$ref": "#/components/parameters/fieldNoteMeaning"
+          },
+          {
             "$ref": "#/components/parameters/order"
           },
           {
@@ -2824,6 +2836,46 @@
         "name": "level",
         "example": "1",
         "description": "level",
+        "required": false
+      },
+      "fieldMeaning": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "meaning",
+        "example": "Hello",
+        "description": "meaning",
+        "required": false
+      },
+      "fieldPronunciation": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "pronunciation",
+        "example": "kon-ni-chi-wa",
+        "description": "pronunciation",
+        "required": false
+      },
+      "fieldNoteWord": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "note_word",
+        "example": "greeting",
+        "description": "note_word",
+        "required": false
+      },
+      "fieldNoteMeaning": {
+        "schema": {
+          "type": "string"
+        },
+        "in": "query",
+        "name": "note_meaning",
+        "example": "user for greeting",
+        "description": "note_meaning",
         "required": false
       },
       "fieldLanguage": {

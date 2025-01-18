@@ -1,5 +1,11 @@
 import * as O from 'fp-ts/Option'
-import { Op, Optional, Sequelize, Transaction } from 'sequelize'
+import {
+  GroupedCountResultItem,
+  Op,
+  Optional,
+  Sequelize,
+  Transaction,
+} from 'sequelize'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
 import { IVocabulary } from '../../../../../domain/entities/vocabulary/get-vocabulary.interface'
 import { VocabularyPostReqInner } from '../../../../../domain/entities/vocabulary/insert-vocabulary.interface'
@@ -146,6 +152,39 @@ export const mysqlVocabularyRepo: VocabularyRepoInterface = {
       where: {
         ...input,
       },
+      transaction: t,
+    })
+    return count
+  },
+
+  async getLevelCount(
+    paginationData: Pagination,
+    t,
+  ): Promise<GroupedCountResultItem[]> {
+    const { fields } = paginationData
+    const where = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name !== 'created_by'),
+    )
+
+    const whereForUserCreated = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name === 'created_by'),
+      'skip',
+    )
+
+    const count = await Vocabulary.count({
+      attributes: [[Sequelize.literal('DISTINCT level'), 'level']],
+      include: [
+        {
+          model: VocabularyGroup,
+          attributes: [],
+          where: {
+            [Op.or]: [{ is_public: true }, whereForUserCreated],
+          },
+          required: true,
+        },
+      ],
+      group: ['Vocabulary.level'],
+      where,
       transaction: t,
     })
     return count

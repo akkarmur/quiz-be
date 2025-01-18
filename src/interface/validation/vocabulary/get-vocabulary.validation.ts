@@ -22,6 +22,10 @@ const orderByFields = [
  */
 export const getVocabularySchema = Joi.object({
   word: Joi.string().pattern(searchStringValidation()),
+  meaning: Joi.string().pattern(searchStringValidation()),
+  pronunciation: Joi.string().pattern(searchStringValidation()),
+  noteWord: Joi.string().pattern(searchStringValidation()),
+  noteMeaning: Joi.string().pattern(searchStringValidation()),
   language: Joi.string().pattern(searchStringValidation()),
   level: Joi.alternatives()
     .try(Joi.number(), Joi.array().items(Joi.number()))

@@ -20,7 +20,7 @@ export const getLevelUseCase = async (
   const records = await repo.getLevel(paginationData, t)
 
   // Get the count of records
-  const totalCount = await repo.getCount(paginationData, t)
+  const count = await repo.getLevelCount(paginationData, t)
 
   // If data is found, format the response
   if (O.isSome(records)) {
@@ -28,7 +28,7 @@ export const getLevelUseCase = async (
       return Level200DataDataInnerFromJSON(item)
     })
 
-    return E.right({ totalCount, data: formattedData })
+    return E.right({ totalCount: count?.length, data: formattedData })
   } else {
     // If no data is found, return an error
     return E.left(formatError(StatusCodes.NOT_FOUND, 'NO_DATA_FOUND'))

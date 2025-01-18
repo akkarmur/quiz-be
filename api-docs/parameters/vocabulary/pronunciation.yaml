@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: pronunciation
+example: 'kon-ni-chi-wa'
+description: 'pronunciation'
+required: false

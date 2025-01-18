@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: note_word
+example: 'greeting'
+description: 'note_word'
+required: false
