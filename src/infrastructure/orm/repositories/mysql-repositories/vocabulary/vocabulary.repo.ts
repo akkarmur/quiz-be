@@ -117,8 +117,62 @@ export const mysqlVocabularyRepo: VocabularyRepoInterface = {
   },
 
   async getCount(paginationData: Pagination, t): Promise<number> {
-    const where = mysqlCommonRepo.whereCondition(paginationData.fields)
-    const count = await Vocabulary.count({ where, transaction: t })
+    const { fields, order, limit, offset } = paginationData
+
+    // Utility function to filter fields
+    const filterFields = (names: string[], include = true) =>
+      fields?.filter((field) =>
+        include ? names.includes(field.name) : !names.includes(field.name),
+      )
+
+    // Create where conditions
+    const where = mysqlCommonRepo.whereCondition(
+      filterFields(['attempt_count', 'score', 'created_by'], false),
+    )
+    const whereForUserVocab = mysqlCommonRepo.whereCondition(
+      filterFields(['attempt_count', 'created_by']),
+    )
+    const whereForUserCreated = mysqlCommonRepo.whereCondition(
+      filterFields(['created_by']),
+      'skip',
+    )
+
+    // Find specific field conditions
+    const whereScore = fields?.find((field) => field.name === 'score')
+    const whereAttempt = fields?.find((field) => field.name === 'attempt_count')
+
+    const count = await Vocabulary.count({
+      include: [
+        {
+          model: UserVocabularyScore,
+          as: 'user_scores',
+          where: {
+            ...whereForUserVocab,
+            ...(whereScore
+              ? {
+                  [Op.and]: Sequelize.where(
+                    Sequelize.literal(
+                      '(COALESCE(correct_count, 0) / COALESCE(attempt_count, 1) * 100)',
+                    ),
+                    operationMap[whereScore.operation],
+                    whereScore.value,
+                  ),
+                }
+              : {}),
+          },
+          required: !!(whereScore || whereAttempt),
+        },
+        {
+          model: VocabularyGroup,
+          where: {
+            [Op.or]: [{ ...whereForUserCreated }, { is_public: true }],
+          },
+          required: true,
+        },
+      ],
+      where,
+      transaction: t,
+    })
     return count
   },
 

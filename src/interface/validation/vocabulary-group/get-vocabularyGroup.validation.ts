@@ -8,6 +8,5 @@ export const getVocabularyGroupSchema = Joi.object({
   is_public: Joi.string(),
   created_at: Joi.date(),
   updated_at: Joi.date(),
-  get_all: Joi.string().valid('true', 'false'),
   ...commonPaginationSchema,
 })
