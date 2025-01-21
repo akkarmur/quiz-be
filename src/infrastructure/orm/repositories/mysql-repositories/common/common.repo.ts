@@ -30,7 +30,7 @@ export const mysqlCommonRepo: CommonRepoInterface<Transaction> = {
    */
   whereCondition: (
     fields?: PaginationField[],
-    active?: 'active' | 'inactive' | 'both',
+    active?: 'active' | 'inactive' | 'both' | 'skip',
   ): WhereOptions => {
     const where: WhereOptions = {}
 
@@ -128,4 +128,11 @@ export const mysqlCommonRepo: CommonRepoInterface<Transaction> = {
 
     return where
   },
+}
+
+export const operationMap: Record<string, string> = {
+  greater_than: '>',
+  less_than: '<',
+  greater_than_equals: '>=',
+  less_than_equals: '<=',
 }

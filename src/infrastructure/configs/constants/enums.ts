@@ -21,3 +21,9 @@ export enum TIME_UNITS {
   SECONDS = 's',
   MILLISECONDS = 'ms',
 }
+
+export enum QUIZ_TYPE {
+  WORD = 'word',
+  MEANING = 'meaning',
+  BOTH = 'both',
+}

@@ -6,5 +6,8 @@ properties:
   description:
     type: string
     example: 'Used to greet people during the day'
+  is_public:
+    type: boolean
+    example: true
 required:
   - name

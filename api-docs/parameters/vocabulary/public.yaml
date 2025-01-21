@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: is_public
+example: 'true'
+description: 'is_public'
+required: false

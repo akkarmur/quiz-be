@@ -1,0 +1,7 @@
+schema:
+  type: string
+in: query
+name: quiz_type
+example: 'word'
+description: 'quiz_type should be in word, meaning, both'
+required: false

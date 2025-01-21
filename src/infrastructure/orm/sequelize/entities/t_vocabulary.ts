@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '..'
+import VocabularyGroup from './t_vocabulary_group'
 import { ID } from './utils'
 
 /**
@@ -27,6 +28,7 @@ class Vocabulary extends Model {
   public note_meaning?: string
   public level?: number
   public type?: string
+  public is_active!: boolean
   public created_at!: Date
   public created_by!: number
   public updated_at!: Date
@@ -111,5 +113,14 @@ Vocabulary.init(
     sequelize: sequelize,
   },
 )
+
+VocabularyGroup.hasMany(Vocabulary, {
+  foreignKey: 'vocab_group_id',
+  as: 'vocab_group',
+})
+
+Vocabulary.belongsTo(VocabularyGroup, {
+  foreignKey: 'vocab_group_id',
+})
 
 export default Vocabulary

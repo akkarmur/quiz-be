@@ -1,9 +1,9 @@
 import * as O from 'fp-ts/Option'
-import { Transaction } from 'sequelize'
+import { Op, Transaction } from 'sequelize'
 import { Pagination } from '../../../../../domain/entities/common/pagination'
-import { VocabularyGroupDB } from '../../../../../domain/entities/vocabularyGroup/get-voca-group.interface'
-import { VocabularyGroupPostReqInner } from '../../../../../domain/entities/vocabularyGroup/insert-voca-group.interface'
-import { VocabularyGroupPatchReqInner } from '../../../../../domain/entities/vocabularyGroup/update-voca-group.interface'
+import { VocabularyGroupDB } from '../../../../../domain/entities/vocabulary-group/get-voca-group.interface'
+import { VocabularyGroupPostReqInner } from '../../../../../domain/entities/vocabulary-group/insert-voca-group.interface'
+import { VocabularyGroupPatchReqInner } from '../../../../../domain/entities/vocabulary-group/update-voca-group.interface'
 import { optionFormatForArray } from '../../../../helpers/fm-ts'
 import VocabularyGroup from '../../../sequelize/entities/t_vocabulary_group'
 import { mysqlCommonRepo } from '../common/common.repo'
@@ -21,7 +21,15 @@ export const mysqlVocabularyGroupRepo: VocabularyGroupRepoInterface = {
     t,
   ): Promise<O.Option<VocabularyGroupDB[]>> {
     const { fields, order, limit, offset } = paginationData
-    const where = mysqlCommonRepo.whereCondition(fields)
+    const where = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name !== 'created_by'),
+    )
+
+    const whereForUserCreated = mysqlCommonRepo.whereCondition(
+      fields?.filter((field) => field.name === 'created_by'),
+      'skip',
+    )
+
     const orderBy = mysqlCommonRepo.convertOrder(order)
 
     // Retrieve the list of vocabulary groups from the database
@@ -30,12 +38,16 @@ export const mysqlVocabularyGroupRepo: VocabularyGroupRepoInterface = {
         'id',
         'name',
         'description',
+        'is_public',
         'is_active',
         'created_at',
         'created_by',
         'updated_at',
       ],
-      where,
+      where: {
+        ...where,
+        [Op.or]: [{ is_public: true }, whereForUserCreated],
+      },
       limit,
       offset,
       order: orderBy,

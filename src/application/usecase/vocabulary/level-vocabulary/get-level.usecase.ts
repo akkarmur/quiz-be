@@ -1,0 +1,36 @@
+import * as E from 'fp-ts/Either'
+import * as O from 'fp-ts/Option'
+import { Transaction } from 'sequelize'
+import { Pagination } from '../../../../domain/entities/common/pagination'
+import {
+  Level200Data,
+  Level200DataDataInnerFromJSON,
+} from '../../../../domain/entities/vocabulary/get-level.interface'
+import { ApplicationError } from '../../../../infrastructure/configs/constants/application-tag'
+import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
+import { formatError } from '../../../../infrastructure/helpers/res'
+import { VocabularyRepoInterface } from '../../../../infrastructure/orm/repositories/mysql-repositories/vocabulary/vocabulary-repo.interface'
+
+export const getLevelUseCase = async (
+  paginationData: Pagination,
+  repo: VocabularyRepoInterface,
+  t: Transaction,
+): Promise<E.Either<ApplicationError, Level200Data>> => {
+  // Get the list of records
+  const records = await repo.getLevel(paginationData, t)
+
+  // Get the count of records
+  const count = await repo.getLevelCount(paginationData, t)
+
+  // If data is found, format the response
+  if (O.isSome(records)) {
+    const formattedData = records.value.map((item) => {
+      return Level200DataDataInnerFromJSON(item)
+    })
+
+    return E.right({ totalCount: count?.length, data: formattedData })
+  } else {
+    // If no data is found, return an error
+    return E.left(formatError(StatusCodes.NOT_FOUND, 'NO_DATA_FOUND'))
+  }
+}

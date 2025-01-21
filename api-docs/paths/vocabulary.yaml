@@ -38,6 +38,10 @@ get:
     - $ref: ../_parameter.yaml#/fieldLevel
     - $ref: ../_parameter.yaml#/fieldType
     - $ref: ../_parameter.yaml#/vocabGroupId
+    - $ref: ../_parameter.yaml#/fieldMeaning
+    - $ref: ../_parameter.yaml#/fieldPronunciation
+    - $ref: ../_parameter.yaml#/fieldNoteWord
+    - $ref: ../_parameter.yaml#/fieldNoteMeaning
     - $ref: ../_parameter.yaml#/order
     - $ref: ../_parameter.yaml#/limit
     - $ref: ../_parameter.yaml#/offset

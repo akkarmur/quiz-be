@@ -1,0 +1,27 @@
+type: object
+properties:
+  message:
+    type: string
+    example: 'Ok'
+  data:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        example: 1
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            level:
+              type: integer
+              example: 101
+          required:
+            - level
+    required:
+      - totalCount
+      - data
+required:
+  - message
+  - data

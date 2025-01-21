@@ -1,8 +1,12 @@
 - name: Auth
-  description: auth-apis
+  description: Auth APIs
 - name: User
-  description: user-apis
+  description: User APIs
 - name: Vocabulary group
-  description: vocabulary-group-apis
+  description: Vocabulary group APIs
 - name: Vocabulary
-  description: vocabulary-apis
+  description: Vocabulary APIs
+- name: User Vocabulary Score
+  description: User Vocabulary Score APIs
+- name: Quiz
+  description: Quiz APIs

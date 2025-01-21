@@ -26,6 +26,9 @@ properties:
             is_active:
               type: boolean
               example: true
+            created_by:
+              type: integer
+              example: 1
             created_at:
               type: string
               format: date-time
@@ -34,11 +37,15 @@ properties:
               type: string
               format: date-time
               example: '2023-12-09T17:12:15.000Z'
+            is_public:
+              type: boolean
+              example: true
           required:
             - id
             - name
             - created_at
             - updated_at
+            - is_public
     required:
       - totalCount
       - data

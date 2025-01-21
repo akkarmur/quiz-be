@@ -4,6 +4,7 @@ import { convertToPagination } from '../../../../domain/entities/common/paginati
 import { USER_ROLES } from '../../../../infrastructure/configs/constants/enums'
 import { StatusCodes } from '../../../../infrastructure/configs/constants/statusCodes'
 import { handleResult } from '../../../../infrastructure/helpers/res'
+import { mysqlCommonRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/common/common.repo'
 import { mysqlVocabularyRepo } from '../../../../infrastructure/orm/repositories/mysql-repositories/vocabulary/vocabulary.repo'
 
 export const getVocabularyController = async (
@@ -21,15 +22,20 @@ export const getVocabularyController = async (
       isActive = true
     }
 
-    const paginationData = convertToPagination(input)
+    const paginationData = convertToPagination({
+      ...input,
+      created_by: tokenDetails?.id,
+    })
 
     // Fetch data from use case
-    const data = await getVocabularyUseCase(
-      paginationData,
-      mysqlVocabularyRepo,
-      isActive,
-      res.locals.transaction,
-    )
+    const data = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
+      return await getVocabularyUseCase(
+        paginationData,
+        mysqlVocabularyRepo,
+        isActive,
+        t,
+      )
+    })
 
     handleResult(req, res, next, StatusCodes.OK, 'OK', data)
   } catch (error) {

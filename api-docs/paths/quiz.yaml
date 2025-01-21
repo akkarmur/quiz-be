@@ -1,0 +1,45 @@
+parameters:
+  - $ref: ../_parameter.yaml#/acceptLanguage
+get:
+  summary: Get Quiz
+  tags:
+    - Quiz
+  operationId: get-quiz
+  description: Retrieve quiz data.
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/quiz200'
+    '401':
+      description: Unauthorized / Invalid Token / Token has expired / Wrong token
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common401'
+    '404':
+      description: Data not found
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common404'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../_schemas.yaml#/common500'
+  parameters:
+    - $ref: ../_parameter.yaml#/fieldQuizType
+    - $ref: ../_parameter.yaml#/fieldLevel
+    - $ref: ../_parameter.yaml#/fieldType
+    - $ref: ../_parameter.yaml#/vocabGroupId
+    - $ref: ../_parameter.yaml#/fieldScore
+    - $ref: ../_parameter.yaml#/fieldAttempt
+    - $ref: ../_parameter.yaml#/order
+    - $ref: ../_parameter.yaml#/limit
+    - $ref: ../_parameter.yaml#/offset
+  security:
+    - tokenAuth: []

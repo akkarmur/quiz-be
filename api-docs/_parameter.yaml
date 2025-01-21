@@ -58,8 +58,32 @@ fieldType:
 fieldLevel:
   $ref: ./parameters/vocabulary/level.yaml
 
+fieldMeaning:
+  $ref: ./parameters/vocabulary/meaning.yaml
+
+fieldPronunciation:
+  $ref: ./parameters/vocabulary/pronunciation.yaml
+
+fieldNoteWord:
+  $ref: ./parameters/vocabulary/note_word.yaml
+
+fieldNoteMeaning:
+  $ref: ./parameters/vocabulary/note_meaning.yaml
+
 fieldLanguage:
   $ref: ./parameters/vocabulary/language.yaml
 
 vocabGroupId:
   $ref: ./parameters/vocabulary/vocab-group-id.yaml
+
+vocabularyPublic:
+  $ref: ./parameters/vocabulary/public.yaml
+
+fieldScore:
+  $ref: ./parameters/quiz/score.yaml
+
+fieldAttempt:
+  $ref: ./parameters/quiz/attempt.yaml
+
+fieldQuizType:
+  $ref: ./parameters/quiz/quiz-type.yaml

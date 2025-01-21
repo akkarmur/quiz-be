@@ -25,9 +25,14 @@ export const getVocabularyUseCase = async (
 
   // If data is found, format the response
   if (O.isSome(records)) {
-    const formattedData = records.value.map((item) =>
-      Vocabulary200DataDataInnerFromJSON(item, isActive),
-    )
+    const formattedData = records.value.map((item) => {
+      let isUser = false
+      if (paginationData.fields?.find((field) => field.name === 'created_by')) {
+        isUser = true
+      }
+      return Vocabulary200DataDataInnerFromJSON(item, isActive, isUser)
+    })
+
     return E.right({ totalCount, data: formattedData })
   } else {
     // If no data is found, return an error

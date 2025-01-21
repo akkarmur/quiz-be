@@ -1,4 +1,4 @@
--- m_user definition
+-- m_user definition with indexes
 CREATE TABLE
   `m_user` (
     `id` bigint NOT NULL AUTO_INCREMENT,
@@ -15,10 +15,11 @@ CREATE TABLE
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `updated_by` varchar(64),
     PRIMARY KEY (`id`),
-    UNIQUE KEY `email` (`email`)
-  ) ENGINE = InnoDB AUTO_INCREMENT = 6 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+    UNIQUE KEY `idx_email` (`email`),
+    KEY `idx_is_active` (`is_active`)
+  );
 
--- t_otp definition
+-- t_otp definition with indexes
 CREATE TABLE
   `t_otp` (
     `id` bigint NOT NULL AUTO_INCREMENT,
@@ -27,10 +28,12 @@ CREATE TABLE
     `device_id` varchar(64) NOT NULL,
     `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-  ) ENGINE = InnoDB AUTO_INCREMENT = 9 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+    PRIMARY KEY (`id`),
+    KEY `idx_email` (`email`),
+    KEY `idx_device_id` (`device_id`)
+  );
 
--- t_login definition
+-- t_login definition with indexes
 CREATE TABLE
   `t_login` (
     `id` bigint NOT NULL AUTO_INCREMENT,
@@ -45,25 +48,31 @@ CREATE TABLE
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `updated_by` varchar(64),
     PRIMARY KEY (`id`),
-    KEY `user_id` (`user_id`),
+    KEY `idx_user_id` (`user_id`),
+    KEY `idx_device_id` (`device_id`),
+    KEY `idx_is_active` (`is_active`),
     CONSTRAINT `t_login_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`id`)
   );
 
--- t_vocabulary_group definition
+-- t_vocabulary_group definition with indexes
 CREATE TABLE
   `t_vocabulary_group` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
+    `is_public` TINYINT NOT NULL DEFAULT '1',
     `is_active` tinyint NOT NULL DEFAULT '1',
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `created_by` BIGINT NOT NULL,
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `updated_by` BIGINT NULL,
-    PRIMARY KEY (`id`)
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+    PRIMARY KEY (`id`),
+    KEY `idx_is_public` (`is_public`),
+    KEY `idx_is_active` (`is_active`),
+    KEY `idx_created_by` (`created_by`)
+  );
 
--- t_vocabulary definition
+-- t_vocabulary definition with indexes
 CREATE TABLE
   `t_vocabulary` (
     `id` bigint NOT NULL AUTO_INCREMENT,
@@ -83,6 +92,28 @@ CREATE TABLE
     `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `updated_by` bigint,
     PRIMARY KEY (`id`),
-    KEY `vocab_group_id` (`vocab_group_id`),
+    KEY `idx_vocab_group_id` (`vocab_group_id`),
+    KEY `idx_is_active` (`is_active`),
+    KEY `idx_level` (`level`),
+    KEY `idx_type` (`type`),
     CONSTRAINT `t_vocabulary_ibfk_1` FOREIGN KEY (`vocab_group_id`) REFERENCES `t_vocabulary_group` (`id`)
-  ) ENGINE = InnoDB AUTO_INCREMENT = 790247 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+  );
+
+-- t_user_vocabulary_score definition with indexes
+CREATE TABLE
+  `t_user_vocabulary_score` (
+    `vocab_id` bigint NOT NULL,
+    `attempt_count` INT NOT NULL,
+    `correct_count` INT NOT NULL,
+    `is_active` tinyint NOT NULL DEFAULT '1',
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `created_by` bigint NOT NULL,
+    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `updated_by` bigint,
+    PRIMARY KEY (`vocab_id`, `created_by`),
+    KEY `idx_vocab_id` (`vocab_id`),
+    KEY `idx_created_by` (`created_by`),
+    KEY `idx_is_active` (`is_active`),
+    CONSTRAINT `t_user_vocab_score_ibfk_1` FOREIGN KEY (`vocab_id`) REFERENCES `t_vocabulary` (`id`),
+    CONSTRAINT `t_user_vocab_score_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `m_user` (`id`)
+  );

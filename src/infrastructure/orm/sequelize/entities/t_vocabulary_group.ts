@@ -6,6 +6,7 @@ class VocabularyGroup extends Model {
   public id!: number
   public name!: string
   public description!: string
+  public is_public!: boolean
   public is_active!: boolean
   public created_at!: Date
   public created_by!: number
@@ -23,6 +24,11 @@ VocabularyGroup.init(
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
+    },
+    is_public: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     is_active: {
       type: DataTypes.BOOLEAN,

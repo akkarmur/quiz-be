@@ -25,20 +25,21 @@ export const getVocabularyGroupController = async (
 ): Promise<void> => {
   try {
     const tokenDetails: TokenDetails | undefined = res.locals.user
-    const { get_all, ...query } = req.query
+    const { get_all, is_public, ...query } = req.query
 
     // Determine query conditions and pagination
     // Determine if only user's own data should be fetched or all active data
     let isActive = false
-    if (tokenDetails?.role === USER_ROLES.USER) {
-      // If the user is a USER, restrict the results to the user's own data
-      query.created_by = `${tokenDetails.id}`
-    } else {
+    if (tokenDetails?.role === USER_ROLES.ADMIN) {
       // If the user is an ADMIN, fetch all active data
       isActive = true
     }
 
-    const paginationData = convertToPagination(query)
+    const paginationData = convertToPagination({
+      ...query,
+      is_public: is_public === 'true',
+      created_by: tokenDetails?.id,
+    })
 
     // Fetch data from use case
     const data = await mysqlCommonRepo.wrapInWorkUnitCtx(async (t) => {
